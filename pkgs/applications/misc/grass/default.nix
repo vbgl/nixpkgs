@@ -1,190 +1,73 @@
-{ config, libXmu, libXext, libXp, libX11, libXt, libSM, libICE, libXpm
-   , libXaw, libXrender
-  , composableDerivation, stdenv, fetchurl
-   , lib, flex, bison, cairo, fontconfig
-   , gdal, zlib, ncurses, gdbm, proj, pkgconfig, swig
-   , blas, liblapack, libjpeg, libpng, mysql, unixODBC, mesa, postgresql, python
-   , readline, sqlite, tcl, tk, libtiff, freetype, makeWrapper, wxGTK, ffmpeg, fftw
-   , wxPython, motif, opendwg }@a:
+{ stdenv, fetchurl, flex, bison, pkgconfig, zlib, libtiff, libpng, fftw
+, cairo, readline, ffmpeg, makeWrapper, wxGTK30, netcdf, blas
+, proj, gdal, geos, sqlite, postgresql, mysql, pythonPackages
+}:
 
-# You can set gui by exporting GRASS_GUI=..
-# see http://grass.itc.it/gdp/html_grass64/g.gui.html
-# defaulting to wxpython because this is used in the manual
-let inherit (builtins) getAttr;
-    inherit (a.composableDerivation) edf wwf;
-    inherit (a.stdenv.lib) maybeAttr optionalString;
+stdenv.mkDerivation {
+  name = "grass-7.0.1";
+  src = fetchurl {
+    url = http://grass.osgeo.org/grass70/source/grass-7.0.1.tar.gz;
+    sha256 = "0ps0xfsgls1hai8fx8x74ajh3560p1yjql2sg02lpqpx30bdv1q9";
+  };
 
-    # wrapper for wwf call
-    # lib: the lib whose include and lib paths should be passed
-    # {}@args: additional args being merged before passing everything to wwf
-    wwfp = lib: {name, ...}@args:
-      let mbEnable = maybeAttr "enable" {} args;
-      in wwf (args // {
-      enable =  mbEnable // {
-        buildInputs = [ lib ]
-          ++ maybeAttr "buildInputs" [] mbEnable;
-        configureFlags = [
-          "--with-${name}-libs=${lib}/lib"
-          "--with-${name}-includes=${lib}/include"
-        ] ++ maybeAttr "configureFlags" [] mbEnable;
-      };
-    });
-in
-a.composableDerivation.composableDerivation {} (fix: {
+  buildInputs = [ flex bison zlib proj gdal libtiff libpng fftw sqlite pkgconfig cairo
+  readline ffmpeg makeWrapper wxGTK30 netcdf geos postgresql mysql.lib blas ]
+    ++ (with pythonPackages; [ python dateutil wxPython30 numpy sqlite3 ]);
 
-  name = "grass-6.4.0RC6";
-
-  buildInputs = [
-    # gentoos package depends on gmath ?
-    a.pkgconfig
-    a.flex a.bison a.libXmu a.libXext a.libXp a.libX11 a.libXt a.libSM a.libICE
-    a.libXpm a.libXaw a.flex a.bison a.gdbm
-    a.makeWrapper
+  configureFlags = [
+    "--with-proj-share=${proj}/share/proj"
+    "--without-opengl"
+    "--with-readline"
+    "--with-wxwidgets"
+    "--with-netcdf"
+    "--with-geos"
+    "--with-postgres"
+    "--with-mysql" "--with-mysql-includes=${mysql.lib}/include/mysql"
+    "--with-blas"
   ];
 
-  cfg = {
-    _64bitSupport = config.grass."64bitSupport" or true;
-    cursesSupport = config.grass.curses or true;
-    gdalSupport = config.grass.gdal or true;
-    pythonSupport = config.grass.python or true;
-    wxwidgetsSupport = config.grass.wxwidgets or true;
-    readlineSupport = config.grass.readline or true;
-    jpegSupport = config.grass.jpeg or true;
-    tiffSupport = config.grass.tiff or true;
-    pngSupport = config.grass.png or true;
-    tcltkSupport = config.grass.tcltk or true;
-    postgresSupport = config.grass.postgres or true;
-    mysqlSupport = config.grass.mysql or true;
-    sqliteSupport = config.grass.sqlite or true;
-    ffmpegSupport = config.grass.ffmpeg or true;
-    openglSupport = config.grass.opengl or true;
-    odbcSupport = config.grass.odbc or false; # fails to find libodbc - why ?
-    fftwSupport = config.grass.fftw or true;
-    blasSupport = config.grass.blas or true;
-    lapackSupport = config.grass.lapack or true;
-    cairoSupport = config.grass.cairo or true;
-    motifSupport = config.grass.motif or true;
-    freetypeSupport = config.grass.freetype or true;
-    projSupport = config.grass.proj or true;
-    opendwgSupport = config.grass.dwg or false;
-    largefileSupport = config.grass.largefile or true;
-  };
-
-  # ?? NLS support:                no
-  # ?? GLw support:                no
-  # ?? DWG support:                no
-  flags = {
-
-    python = {
-      configureFlags = [ "--with-python=${a.python}/bin/python-config" ];
-      buildInputs = [a.python a.swig];
-    };
-
-  }
-  // edf { name = "_64bit"; feat = "64bit"; }
-  // wwfp a.ncurses { name = "curses"; }
-  // wwfp a.gdal { name = "gdal"; }
-  // wwfp a.wxGTK { name = "wxwidgets"; value = "${a.wxGTK}/bin/wx-config"; }
-  // wwfp a.readline { name = "readline"; }
-  // wwfp a.libjpeg { name = "jpeg"; }
-  // wwfp a.libtiff { name = "tiff"; }
-  // wwfp a.libpng { name = "png"; }
-  // wwfp a.tk { name = "tcltk"; enable.buildInputs = [ a.tcl ]; }
-  // wwfp a.postgresql { name = "postgres"; }
-  // wwf {
-    name = "mysql";
-    enable = {
-      buildInputs = [ a.mysql.lib ];
-      configureFlags = [
-        "--with-mysql-libs=${a.mysql.lib}/lib/mysql"
-        "--with-mysql-includes=${a.mysql.lib}/include/mysql"
-      ];
-    };
-  }
-  // wwfp a.sqlite { name = "sqlite"; }
-  // wwf {
-    name = "ffmpeg";
-    enable = {
-      configureFlags = [
-        "--with-ffmpeg-libs=${a.ffmpeg}/lib"
-        "--with-ffmpeg-includes=${a.ffmpeg}/include"
-      ];
-      # is there a nicer way to pass additional include directories?
-      # this should work: --with-ffmpeg-includes=/usr/include/lib[av|sw]*
-      # I did not try
-      preConfigure = ''
-        for dir in ${a.ffmpeg}/include/*; do
-          if [ -d $dir ]; then
-            NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -I$dir"
-          fi
-        done
-      '';
-      buildInputs = [a.ffmpeg];
-    };
-  }
-  // wwfp a.mesa { name = "opengl"; }
-  // wwfp a.unixODBC { name = "odbc"; }
-  // wwfp a.fftw { name = "fftw"; }
-  // wwf {
-    name = "blas";
-    enable.configureFlags = [ "--with-blas-libs=${a.blas}/lib" ];
-  }
-  // wwf {
-    name = "lapack";
-    enable.configureFlags = [ "--with-lapack-libs=${a.liblapack}/lib" ];
-  }
-  // wwfp a.cairo {
-    name = "cairo";
-    enable.buildInputs = [ a.fontconfig a.libXrender ];
-  }
-  // wwfp a.motif { name = "motif"; }
-  // wwf {
-    name="freetype";
-    enable = {
-      buildInputs = [ a.freetype ];
-      configureFlags = [
-        "--with-freetype-libs=${a.freetype}/lib"
-        "--with-freetype-includes=${a.freetype}/include/freetype2"
-      ];
-    };
-  }
-  // wwfp a.proj { name = "proj"; enable.configureFlags = [ "--with-proj-share=${a.proj}/share"]; }
-  // wwfp a.opendwg { name = "opendwg"; }
-  // edf {
-    name = "largefile";
-  };
-  /* ?
-  // wwf {
-    name = "x";
-    enable.buildInputs = [];
-  };
-  */
-
-  src = a.fetchurl {
-    url = "http://grass.itc.it/grass64/source/grass-6.4.0RC6.tar.gz";
-    sha256 = "043cxa224rd4q1x2mq7sl7ylnxv2vvb4k8laycgcjnp60nzhlmaz";
-  };
-
-  postInstall = ''
-    e=$(echo $out/bin/grass*)
-    mv $out/bin/{,.}$(basename $e)
-    cat >> $e << EOF
-    #!/bin/sh
-    export PATH=${a.python}/bin:\$PATH
-    export GRASS_WISH=\${a.tk}/bin/wish
-    export GRASS_GUI=\''${GRASS_GUI:-wxpython}
-    export SHELL=/bin/sh
-    ${optionalString fix.fixed.cfg.wxwidgetsSupport ''export PYTHONPATH=\$PYTHONPATH\''${PYTHONPATH:+:}:$(toPythonPath ${a.wxPython})''}
-    exec $out/bin/.$(basename $e)
-    EOF
-    chmod +x $e
+  /* Ensures that the python script run at build time are actually executable;
+   * otherwise, patchShebangs ignores them.  */
+  postConfigure = ''
+    chmod +x scripts/d.out.file/d.out.file.py \
+      scripts/d.to.rast/d.to.rast.py \
+      scripts/d.what.rast/d.what.rast.py \
+      scripts/d.what.vect/d.what.vect.py \
+      scripts/g.extension/g.extension.py \
+      scripts/g.extension.all/g.extension.all.py \
+      scripts/r.pack/r.pack.py \
+      scripts/r.tileset/r.tileset.py \
+      scripts/r.unpack/r.unpack.py \
+      scripts/v.krige/v.krige.py \
+      scripts/v.rast.stats/v.rast.stats.py \
+      scripts/v.to.lines/v.to.lines.py \
+      scripts/v.what.strds/v.what.strds.py \
+      scripts/v.unpack/v.unpack.py \
+      scripts/wxpyimgview/*.py \
+      gui/wxpython/animation/g.gui.animation.py \
+      gui/wxpython/rlisetup/g.gui.rlisetup.py \
+      gui/wxpython/vdigit/g.gui.vdigit.py \
+      temporal/t.rast.accumulate/t.rast.accumulate.py \
+      temporal/t.rast.accdetect/t.rast.accdetect.py \
+      temporal/t.select/t.select.py
+    for d in gui lib scripts temporal tools; do
+      patchShebangs $d
+    done
   '';
 
-  meta = {
-    description = "free Geographic Information System (GIS) software used for geospatial data management and analysis, image processing, graphics/maps production, spatial modeling, and visualization";
-    homepage = http://grass.itc.it/index.php;
-    license = "GPL";
-    broken = true;
-  };
+  postInstall = ''
+    wrapProgram $out/bin/grass70 \
+    --set PYTHONPATH $PYTHONPATH \
+    --set GRASS_PYTHON ${pythonPackages.python}/bin/${pythonPackages.python.executable}
+    ln -s $out/grass-*/lib $out/lib
+  '';
 
-})
+  enableParallelBuilding = true;
+
+  meta = {
+    homepage = http://grass.osgeo.org/;
+    description = "GIS software suite used for geospatial data management and analysis, image processing, graphics and maps production, spatial modeling, and visualization";
+    license = stdenv.lib.licenses.gpl2Plus;
+    platforms = stdenv.lib.platforms.all;
+  };
+}
