@@ -1,6 +1,7 @@
 { stdenv, fetchurl, flex, bison, pkgconfig, zlib, libtiff, libpng, fftw
 , cairo, readline, ffmpeg, makeWrapper, wxGTK30, netcdf, blas
 , proj, gdal, geos, sqlite, postgresql, mysql, pythonPackages
+, gcc, gnumake, subversion
 }:
 
 stdenv.mkDerivation {
@@ -58,7 +59,8 @@ stdenv.mkDerivation {
   postInstall = ''
     wrapProgram $out/bin/grass70 \
     --set PYTHONPATH $PYTHONPATH \
-    --set GRASS_PYTHON ${pythonPackages.python}/bin/${pythonPackages.python.executable}
+    --set GRASS_PYTHON ${pythonPackages.python}/bin/${pythonPackages.python.executable} \
+    --suffix PATH : "${gcc}/bin:${gnumake}/bin:${subversion}/bin"
     ln -s $out/grass-*/lib $out/lib
   '';
 
