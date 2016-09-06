@@ -1,17 +1,17 @@
-{ stdenv, fetchurl, composableDerivation, unzip, libjpeg, libtiff, zlib
+{ stdenv, fetchurl, composableDerivation, libjpeg, libtiff, zlib
 , postgresql, mysql, libgeotiff, python, pythonPackages, proj, geos, openssl
 , libpng }:
 
 composableDerivation.composableDerivation {} (fixed: rec {
-  version = "1.11.3";
+  version = "1.11.5";
   name = "gdal-${version}";
 
   src = fetchurl {
-    url = "http://download.osgeo.org/gdal/${version}/${name}.tar.gz";
-    sha256 = "561588bdfd9ca91919d4679a77a2b44214b158934ee8b425295ca5be33a1014d";
+    url = "http://download.osgeo.org/gdal/${version}/${name}.tar.xz";
+    sha256 = "0hphxzvy23v3vqxx1y22hhhg4cypihrb8555y12nb4mrhzlw7zfl";
   };
 
-  buildInputs = [ unzip libjpeg libtiff libpng python pythonPackages.numpy proj openssl ];
+  buildInputs = [ libjpeg libtiff libpng python pythonPackages.numpy proj openssl ];
 
   patches = [
     # This ensures that the python package is installed into gdal's prefix,
