@@ -1,22 +1,22 @@
-{ stdenv, fetchurl, libtiff }:
+{ stdenv, fetchurl, proj, libtiff }:
 
 stdenv.mkDerivation {
-  name = "libgeotiff-1.2.5";
+  name = "libgeotiff-1.4.1";
 
   src = fetchurl {
-    url = ftp://ftp.remotesensing.org/pub/geotiff/libgeotiff/libgeotiff-1.2.5.tar.gz;
-    sha256 = "0z2yx77pm0zs81hc0b4lwzdd5s0rxcbylnscgq80b649src1fyzj";
+    url = http://download.osgeo.org/geotiff/libgeotiff/libgeotiff-1.4.1.tar.gz;
+    sha256 = "08zx84xmgcmrplkkp7y0jqx8j4ylap581dz8qywipm5k37p7dz5c";
   };
 
-  buildInputs = [ libtiff ];
+  buildInputs = [ proj libtiff ];
 
   hardeningDisable = [ "format" ];
 
-  meta = {
+  meta = with stdenv.lib; {
     description = "Library implementing attempt to create a tiff based interchange format for georeferenced raster imagery";
-    homepage = http://www.remotesensing.org/geotiff/geotiff.html;
-    license = stdenv.lib.licenses.mit;
-    maintainers = [stdenv.lib.maintainers.marcweber];
-    platforms = stdenv.lib.platforms.linux;
+    homepage = http://geotiff.osgeo.org/;
+    license = licenses.mit;
+    maintainers = [ maintainers.marcweber ];
+    platforms = platforms.unix;
   };
 }
