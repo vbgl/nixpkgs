@@ -44,7 +44,7 @@ index 8d1e7882e5..2c223fb315 100644
          })
      }
  
-+    #[cfg_attr(target_os = "linux", ignore)]
++    #[cfg_attr(any(target_os = "linux", target_os = "macos"), ignore)]
      #[test]
      fn connect_timeout_unroutable() {
          // this IP is unroutable, so connections should always time out,
