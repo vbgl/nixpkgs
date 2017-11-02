@@ -5,10 +5,10 @@ stdenv.mkDerivation rec {
 	version = "1.0.0";
 
 	src = fetchFromGitHub {
-		owner = "whitequark";
+		owner = "vbgl";
 		repo = "ocaml-expat";
-		rev = "v${version}";
-		sha256 = "0rb47v08ra2hhh73p3d8sl4sizqwiwc37gnkl22b23sbwbjrpbz0";
+		rev = "2a8f625d0b64469ad320d3f7b4d63ba1bab00b8f";
+		sha256 = "14jfz1n8xbyc5vylsa3y9dj9zlcisqvlmwagf78382526ihgwjjg";
 	};
 
 	prePatch = ''
