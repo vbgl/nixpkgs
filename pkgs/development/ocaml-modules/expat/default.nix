@@ -7,8 +7,8 @@ stdenv.mkDerivation rec {
 	src = fetchFromGitHub {
 		owner = "vbgl";
 		repo = "ocaml-expat";
-		rev = "2a8f625d0b64469ad320d3f7b4d63ba1bab00b8f";
-		sha256 = "14jfz1n8xbyc5vylsa3y9dj9zlcisqvlmwagf78382526ihgwjjg";
+		rev = "ad5112ea09f47416a0902a48dd4537c8e8a067f3";
+		sha256 = "0bzvjbkqi1q3qqdy2fbs11dn3bdl9j8jfkvvymd0m70v8vyjjfl8";
 	};
 
 	prePatch = ''
