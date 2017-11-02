@@ -7,7 +7,7 @@ stdenv.mkDerivation rec {
 	src = fetchFromGitHub {
 		owner = "vbgl";
 		repo = "ocaml-expat";
-		rev = "ad5112ea09f47416a0902a48dd4537c8e8a067f3";
+		rev = "617987747733910a2a889944a489a9c47f7cbfbf";
 		sha256 = "0bzvjbkqi1q3qqdy2fbs11dn3bdl9j8jfkvvymd0m70v8vyjjfl8";
 	};
 
