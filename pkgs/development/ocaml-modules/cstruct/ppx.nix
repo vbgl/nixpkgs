@@ -1,5 +1,7 @@
 { stdenv, ocaml, cstruct, ppx_tools_versioned }:
 
+assert stdenv.lib.versionAtLeast ocaml.version "4.02";
+
 stdenv.mkDerivation rec {
 	name = "ocaml${ocaml.version}-ppx_cstruct-${version}";
 	inherit (cstruct) version src unpackCmd installPhase meta;
