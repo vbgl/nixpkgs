@@ -1,5 +1,5 @@
 { stdenv, lib, janePackage, ocaml, ocamlbuild, cryptokit, ctypes, magic-mime,
-  ocaml-migrate-parsetree, octavius, ounit, ppx_deriving, re, zarith, num,
+  ocaml-migrate-parsetree, octavius, ounit, ppx_deriving, ppx_derivers, re, zarith, num,
   openssl }:
 
 rec {
@@ -96,8 +96,9 @@ rec {
 
   ppx_type_conv = janePackage {
     name = "ppx_type_conv";
-    hash = "0a0gxjvjiql9vg37k0akn8xr5724nv3xb7v37xpidv7ld927ks7p";
-    propagatedBuildInputs = [ ppx_metaquot ppx_deriving ];
+    version = "0.9.1";
+    hash = "1vdqsja3z6f8rbav7bp07ib5y0ad82lrcz285ypkgdasily8hxmm";
+    propagatedBuildInputs = [ ppx_metaquot ppx_deriving ppx_derivers ];
     meta.description = "Support Library for type-driven code generators";
   };
 
