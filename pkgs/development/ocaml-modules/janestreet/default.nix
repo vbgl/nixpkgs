@@ -81,8 +81,8 @@ rec {
 
   ppx_driver = janePackage {
     name = "ppx_driver";
-    version = "0.9.1";
-    hash = "1amz49x6v4sh1v2my6618cah0zv5i7jmsapbk9ydps6419g5asay";
+    version = "0.9.2";
+    hash = "0dyqx4fxiv7zi0chp55hnad22m93zs1mqwpp5vikmbysyfr1qy6x";
     buildInputs = [ ocamlbuild ];
     propagatedBuildInputs = [ ppx_optcomp ];
     meta.description = "Feature-full driver for OCaml AST transformers";
