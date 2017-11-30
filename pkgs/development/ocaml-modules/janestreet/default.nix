@@ -64,7 +64,8 @@ rec {
 
   ppx_core = janePackage {
     name = "ppx_core";
-    hash = "15400zxxkqdimmjpdjcs36gcbxbrhylmaczlzwd6x65v1h9aydz3";
+    version = "0.9.3";
+    hash = "03lbvrhyrszpbjzfmijjf4ckn8w0a19wvcwjm2ijcpbb9ac77q9g";
     propagatedBuildInputs = [ ppx_ast ppx_traverse_builtins stdio ];
     meta.description = "Jane Street's standard library for ppx rewriters";
   };
