@@ -18886,7 +18886,7 @@ in
     lua = lua5;
   };
 
-  inherit (ocaml-ng.ocamlPackages_4_01_0) monotoneViz;
+  inherit (ocaml-ng.ocamlPackages_4_05) monotoneViz;
 
   moonlight-embedded = callPackage ../applications/misc/moonlight-embedded { };
 
