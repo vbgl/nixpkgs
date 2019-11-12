@@ -32,6 +32,9 @@ let
       gappalib = callPackage ../development/coq-modules/gappalib {};
       heq = callPackage ../development/coq-modules/heq {};
       HoTT = callPackage ../development/coq-modules/HoTT {};
+      InteractionTrees = callPackage ../development/coq-modules/InteractionTrees {
+        coq-ext-lib = self.coq-ext-lib.override { version = "0.10.2"; };
+      };
       interval = callPackage ../development/coq-modules/interval {};
       InfSeqExt = callPackage ../development/coq-modules/InfSeqExt {};
       iris = callPackage ../development/coq-modules/iris {};
