@@ -235,6 +235,8 @@ let
 
     duff = callPackage ../development/ocaml-modules/duff { };
 
+    dune-configurator = callPackage ../development/ocaml-modules/dune-configurator { };
+
     dune-private-libs = callPackage ../development/ocaml-modules/dune-private-libs { };
 
     earley = callPackage ../development/ocaml-modules/earley { };
