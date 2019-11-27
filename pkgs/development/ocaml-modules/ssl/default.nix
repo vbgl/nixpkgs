@@ -1,4 +1,4 @@
-{ lib, buildDunePackage, fetchFromGitHub, pkg-config, openssl }:
+{ lib, buildDunePackage, fetchFromGitHub, pkg-config, openssl, dune-configurator }:
 
 buildDunePackage rec {
   pname = "ssl";
@@ -11,7 +11,7 @@ buildDunePackage rec {
     sha256 = "04h02rvzrwp886n5hsx84rnc9b150iggy38g5v1x1rwz3pkdnmf0";
   };
 
-  nativeBuildInputs = [ pkg-config ];
+  nativeBuildInputs = [ pkg-config dune-configurator ];
   propagatedBuildInputs = [openssl];
 
   meta = {

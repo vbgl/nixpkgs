@@ -1,4 +1,5 @@
 { janePackage
+, dune-configurator
 , ctypes
 , num
 , octavius
@@ -26,6 +27,7 @@ rec {
     version = "0.12.2";
     hash = "0gl89zpgsf3n30nb6v5cns27g2bfg4rf3s2427gqvwbkr5gcf7ri";
     meta.description = "Full standard library replacement for OCaml";
+    buildInputs = [ dune-configurator ];
     propagatedBuildInputs = [ sexplib0 ];
   };
 
