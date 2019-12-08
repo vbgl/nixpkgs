@@ -1,33 +1,26 @@
-{ stdenv, fetchzip, ocaml, findlib, gen, ppx_tools_versioned }:
+{ lib, fetchzip, buildDunePackage, gen, ppx_tools_versioned, uchar }:
 
-if !stdenv.lib.versionAtLeast ocaml.version "4.02"
-then throw "sedlex is not available for OCaml ${ocaml.version}"
-else
-
-stdenv.mkDerivation rec {
-  name = "ocaml${ocaml.version}-sedlex-${version}";
-  version = "1.99.5";
+buildDunePackage rec {
+  pname = "sedlex";
+  version = "2.0";
 
   src = fetchzip {
-    url = "https://github.com/ocaml-community/sedlex/archive/fb84e1766fc4b29e79ec40029ffee5cdb37b392f.tar.gz";
-    sha256 = "0phnqyn6mpv5byr1kkphl24y9q9fb2k3xg9yb457h5816q6ya72n";
+    url = "http://github.com/ocaml-community/sedlex/archive/v${version}.tar.gz";
+    sha256 = "00nrl980jk2rkrjwkbdzscbvijfz0bcy2avzvij25zn1wi0g2dpc";
   };
 
-  buildInputs = [ ocaml findlib ppx_tools_versioned ];
+  buildInputs = [ ppx_tools_versioned ];
 
-  propagatedBuildInputs = [ gen ];
+  propagatedBuildInputs = [ gen uchar ];
 
-  buildFlags = [ "all" "opt" ];
-
-  createFindlibDestdir = true;
+  doCheck = true;
 
   dontStrip = true;
 
   meta = {
     homepage = https://github.com/ocaml-community/sedlex;
     description = "An OCaml lexer generator for Unicode";
-    license = stdenv.lib.licenses.mit;
-    inherit (ocaml.meta) platforms;
-    maintainers = [ stdenv.lib.maintainers.vbgl ];
+    license = lib.licenses.mit;
+    maintainers = [ lib.maintainers.vbgl ];
   };
 }
