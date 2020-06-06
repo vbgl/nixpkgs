@@ -17,8 +17,8 @@ let
       sha256 = "1ir313mmkgp2c65wgw8c681a15clvri1wb1hyjqmj7ymx4shkl56";
     };
     "8.11" = {
-      version = "1.2";
-      sha256 = "1w317h7r5llyamzn1kqb8j6p5sxks2j8vq8wnpzrx01jqbyibxgy";
+      version = "1.2.1";
+      sha256 = "0v26jf0q3rkmx9plyq5gczz62l4k5ja5nkj3kcn3yvrh3xkp7n6d";
     };
   };
   param = params.${coq.coq-version};
