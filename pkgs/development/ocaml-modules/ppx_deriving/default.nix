@@ -37,13 +37,14 @@ buildDunePackage rec {
     inherit (params) sha256;
   };
 
-  buildInputs = [ ppxlib cppo ];
+  buildInputs = [ cppo ];
   propagatedBuildInputs = [
     (if params.useOMP2
     then ocaml-migrate-parsetree-2-1
     else ocaml-migrate-parsetree)
     ppx_derivers
     result
+    ppxlib
   ];
 
   doCheck = true;
