@@ -2,11 +2,12 @@
 
 buildDunePackage rec {
   minimalOCamlVersion = "4.07";
+  duneVersion = "3";
   version = "0.3.0";
   pname = "optint";
   src = fetchurl {
     url = "https://github.com/mirage/optint/releases/download/v${version}/optint-${version}.tbz";
-    sha256 = "sha256-KVz/LBNLA4WxO6gdUAXZ+EG6QNSlAq7RDJl/I57xFHs=";
+    hash = "sha256-KVz/LBNLA4WxO6gdUAXZ+EG6QNSlAq7RDJl/I57xFHs=";
   };
 
   meta = {
