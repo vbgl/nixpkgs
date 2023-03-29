@@ -4,6 +4,8 @@ buildDunePackage rec {
   pname = "duppy";
   version = "0.9.2";
 
+  duneVersion = "3";
+
   src = fetchFromGitHub {
     owner = "savonet";
     repo = "ocaml-duppy";

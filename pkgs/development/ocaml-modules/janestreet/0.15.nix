@@ -506,6 +506,7 @@ with self;
   patdiff = janePackage {
     pname = "patdiff";
     hash = "0623a7n5r659rkxbp96g361mvxkcgc6x9lcbkm3glnppplk5kxr9";
+    duneVersion = "3";
 
     # Used by patdiff-git-wrapper.  Providing it here also causes the shebang
     # line to be automatically patched.

@@ -2,7 +2,7 @@
 
 buildDunePackage rec {
   pname = "mparser-pcre";
-  useDune2 = true;
+  duneVersion = "3";
 
   inherit (mparser) src version;
 

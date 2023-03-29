@@ -4,7 +4,7 @@ buildDunePackage rec {
   pname = "pcre";
   version = "7.5.0";
 
-  useDune2 = true;
+  duneVersion = "3";
 
   minimalOCamlVersion = "4.12";
 
