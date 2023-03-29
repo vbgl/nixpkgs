@@ -1,11 +1,15 @@
-{ lib, buildDunePackage, dune_2, csexp, result }:
+{ lib, buildDunePackage, dune_3, csexp, result }:
 
 buildDunePackage rec {
   pname = "dune-configurator";
 
-  inherit (dune_2) src version patches;
+  inherit (dune_3) src version;
 
-  duneVersion = "2";
+  preConfigure = ''
+    rm -rf vendor/csexp
+  '';
+
+  duneVersion = "3";
 
   minimalOCamlVersion = "4.03";
 
