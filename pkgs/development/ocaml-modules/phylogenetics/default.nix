@@ -45,11 +45,6 @@ buildDunePackage rec {
     printbox-text
   ];
 
-  checkPhase = ''
-    runHook preCheck
-    dune build @app/fulltest
-    runHook postCheck
-  '';
   doCheck = true;
 
   meta = with lib; {
