@@ -4979,6 +4979,16 @@ with pkgs;
   ocaml = ocamlPackages.ocaml;
 
   ocamlPackages = recurseIntoAttrs ocaml-ng.ocamlPackages;
+  OC09 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_09;
+  OC10 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_10;
+  OC11 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_11;
+  OC12 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_12;
+  OC13 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_13;
+  OC14 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_14;
+  OC50 = recurseIntoAttrs ocaml-ng.ocamlPackages_5_0;
+  OC51 = recurseIntoAttrs ocaml-ng.ocamlPackages_5_1;
+  OC52 = recurseIntoAttrs ocaml-ng.ocamlPackages_5_2;
+  OC53 = recurseIntoAttrs ocaml-ng.ocamlPackages_5_3;
 
   ocaml-crunch = ocamlPackages.crunch.bin;
 
