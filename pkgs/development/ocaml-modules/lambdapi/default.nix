@@ -19,7 +19,7 @@ buildDunePackage rec {
   pname = "lambdapi";
   version = "2.3.1";
 
-  minimalOCamlVersion = "4.08";
+  minimalOCamlVersion = "4.14";
   duneVersion = "3";
 
   src = fetchurl {
