@@ -41,11 +41,6 @@ buildDunePackage rec {
     yojson
   ];
 
-  checkPhase = ''
-    runHook preCheck
-    dune build @app/fulltest
-    runHook postCheck
-  '';
   doCheck = true;
 
   meta = with lib; {
