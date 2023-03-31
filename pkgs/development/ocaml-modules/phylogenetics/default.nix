@@ -38,11 +38,6 @@ buildDunePackage (finalAttrs: {
     printbox-text
   ];
 
-  checkPhase = ''
-    runHook preCheck
-    dune build @app/fulltest
-    runHook postCheck
-  '';
   doCheck = true;
 
   meta = {
