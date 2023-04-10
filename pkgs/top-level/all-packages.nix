@@ -15687,7 +15687,7 @@ with pkgs;
   OC12 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_12;
   OC13 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_13;
   OC14 = recurseIntoAttrs ocaml-ng.ocamlPackages_4_14;
-  OC50 = recurseIntoAttrs ocaml-ng.ocamlPackages_5_0;
+  #OC50 = recurseIntoAttrs ocaml-ng.ocamlPackages_5_0;
 
   ocaml-crunch = ocamlPackages.crunch.bin;
 
