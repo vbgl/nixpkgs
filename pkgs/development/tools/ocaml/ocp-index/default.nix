@@ -5,6 +5,7 @@ buildDunePackage rec {
   version = "1.3.4";
 
   minimalOCamlVersion = "4.08";
+  duneVersion = "3";
 
   src = fetchFromGitHub {
     owner = "OCamlPro";
