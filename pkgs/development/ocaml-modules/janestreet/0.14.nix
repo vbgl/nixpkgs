@@ -201,6 +201,7 @@ with self;
 
   cinaps = janePackage {
     pname = "cinaps";
+    duneVersion = "3";
     hash = "0ms1j2kh7i5slyw9v4w9kdz52dkwl5gqcnvn89prgimhk2vmichj";
     minimumOCamlVersion = "4.07";
     meta.description = "Trivial metaprogramming tool";

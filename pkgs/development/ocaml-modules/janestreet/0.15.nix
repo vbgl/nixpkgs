@@ -238,6 +238,7 @@ with self;
 
   cinaps = janePackage {
     pname = "cinaps";
+    duneVersion = "3";
     version = "0.15.1";
     hash = "0g856cxmxg4vicwslhqldplkpwi158s2d62vwzv26xg5m6wjn9rg";
     minimumOCamlVersion = "4.04";
