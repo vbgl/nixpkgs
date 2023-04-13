@@ -13,6 +13,7 @@ buildDunePackage rec {
   };
 
   minimalOCamlVersion = "4.08";
+  duneVersion = "3";
 
   # disable xmldiff tests, so we don't need to package unmaintained and legacy pkgs
   postPatch = "rm -rf examples/xmldiff";
