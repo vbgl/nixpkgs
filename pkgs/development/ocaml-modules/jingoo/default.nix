@@ -6,9 +6,8 @@ buildDunePackage rec {
   pname = "jingoo";
   version = "1.4.4";
 
-  useDune2 = true;
-
-  minimumOCamlVersion = "4.04";
+  duneVersion = "3";
+  minimalOCamlVersion = "4.04";
 
   src = fetchFromGitHub {
     owner = "tategakibunko";
