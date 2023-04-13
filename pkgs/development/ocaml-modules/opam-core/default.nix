@@ -6,7 +6,7 @@ buildDunePackage rec {
 
   inherit (opam) src version;
 
-  useDune2 = true;
+  duneVersion = "3";
 
   nativeBuildInputs = [ unzip cppo ];
   propagatedBuildInputs = [ ocamlgraph re ];
