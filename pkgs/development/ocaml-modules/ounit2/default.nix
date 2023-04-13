@@ -4,13 +4,13 @@ buildDunePackage rec {
   minimalOCamlVersion = "4.04";
 
   pname = "ounit2";
-  version = "2.2.6";
+  version = "2.2.7";
 
-  duneVersion = if lib.versionAtLeast ocaml.version "4.08" then "2" else "1";
+  duneVersion = if lib.versionAtLeast ocaml.version "4.08" then "3" else "1";
 
   src = fetchurl {
     url = "https://github.com/gildor478/ounit/releases/download/v${version}/ounit-${version}.tbz";
-    hash = "sha256-BpD7Hg6QoY7tXDVms8wYJdmLDox9UbtrhGyVxFphWRM=";
+    hash = "sha256-kPbmO9EkClHYubL3IgWb15zgC1J2vdYji49cYTwOc4g=";
   };
 
   propagatedBuildInputs = [ seq stdlib-shims ];
