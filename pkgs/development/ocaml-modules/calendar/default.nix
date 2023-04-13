@@ -4,6 +4,7 @@ buildDunePackage rec {
   pname = "calendar";
   version = "3.0.0";
   minimalOCamlVersion = "4.03";
+  duneVersion = "3";
 
   src = fetchFromGitHub {
     owner = "ocaml-community";
