@@ -1,24 +1,52 @@
-{ lib, fetchFromGitHub, buildOasisPackage, minisat }:
+{ stdenv, lib, fetchFromGitHub, ocaml, ocamlbuild, findlib, minisat, z3, z3-dev }:
 
-buildOasisPackage rec {
-  pname = "ocaml-sat-solvers";
-  version = "0.4";
+lib.throwIf (lib.versionAtLeast ocaml.version "5.0")
+  "ocaml-sat-solvers is not available for OCaml ≥ 5.0"
 
-  minimumOCamlVersion = "4.03.0";
+stdenv.mkDerivation rec {
+  pname = "ocaml${ocaml.version}-ocaml-sat-solvers";
+  version = "0.7.1";
 
   src = fetchFromGitHub {
-    owner  = "tcsprojects";
-    repo   = "ocaml-sat-solvers";
-    rev    = "v${version}";
-    sha256 = "1hxr16cyl1p1k1cik848mqrysq95wxmlykpm93a99pn55mp28938";
+    owner = "tcsprojects";
+    repo = "ocaml-sat-solvers";
+    rev  = "v${version}";
+    hash = "sha256-hESHus3DlPp3YoqfQm/Pp1N91d9BPSGLD5FIbOeYOp8=";
   };
 
-  propagatedBuildInputs = [ minisat ];
+  nativeBuildInputs = [
+    ocaml
+    findlib
+    ocamlbuild
+  ];
+
+  buildInputs = [ z3-dev ];
+
+  strictDeps = true;
+
+  configureScript = "ocaml setup.ml -configure";
+
+  buildPhase = ''
+    runHook preBuild
+    ocaml setup.ml -build
+    runHook postBuild
+  '';
+
+  installPhase = ''
+    runHook preInstall
+    ocaml setup.ml -install
+    runHook postInstall
+  '';
+
+  createFindlibDestdir = true;
+
+  propagatedBuildInputs = [ minisat z3 ];
 
   meta = {
     homepage = "https://github.com/tcsprojects/ocaml-sat-solvers";
     description = "SAT Solvers For OCaml";
     license = lib.licenses.bsd3;
     maintainers = with lib.maintainers; [ mgttlinger ];
+    inherit (ocaml.meta) platforms;
   };
 }

@@ -1153,7 +1153,9 @@ let
 
     ocaml-recovery-parser = callPackage ../development/tools/ocaml/ocaml-recovery-parser { };
 
-    ocaml-sat-solvers = callPackage ../development/ocaml-modules/ocaml-sat-solvers { };
+    ocaml-sat-solvers = callPackage ../development/ocaml-modules/ocaml-sat-solvers {
+      z3-dev = pkgs.z3.dev;
+    };
 
     ocaml_sqlite3 = callPackage ../development/ocaml-modules/sqlite3 { };
 
