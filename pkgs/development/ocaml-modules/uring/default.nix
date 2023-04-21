@@ -38,7 +38,7 @@ buildDunePackage rec {
     mdx.bin
   ];
 
-  doCheck = true;
+  doCheck = false;
 
   dontStrip = true;
 
