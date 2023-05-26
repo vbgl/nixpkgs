@@ -1,6 +1,9 @@
-{ lib, fetchFromGitHub, buildDunePackage
+{ lib, fetchFromGitHub, buildDunePackage, ocaml
 , calendar, csv, hex, ppx_deriving, ppx_sexp_conv, re, rresult, sexplib
 }:
+
+lib.throwIf (lib.versionAtLeast ocaml.version "5.0")
+  "pgocaml is not available for OCaml ${ocaml.version}"
 
 buildDunePackage rec {
   pname = "pgocaml";
@@ -13,7 +16,6 @@ buildDunePackage rec {
   };
 
   minimalOCamlVersion = "4.08";
-  duneVersion = "3";
 
   propagatedBuildInputs = [ calendar csv hex ppx_deriving ppx_sexp_conv re rresult sexplib ];
 
