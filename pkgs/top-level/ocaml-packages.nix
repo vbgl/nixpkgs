@@ -1398,7 +1398,9 @@ let
 
     prometheus = callPackage ../development/ocaml-modules/prometheus { };
 
-    progress = callPackage ../development/ocaml-modules/progress { };
+    progress = callPackage ../development/ocaml-modules/progress {
+      mtime = self.mtime.override { version = "2.0.0"; };
+    };
 
     promise_jsoo = callPackage ../development/ocaml-modules/promise_jsoo { };
 
