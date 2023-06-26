@@ -6,7 +6,6 @@ rec {
   version = "2023-04-25";
 
   minimalOCamlVersion = "4.14";
-  duneVersion = "3";
 
   src = fetchFromGitHub {
     owner = "c-cube";
@@ -23,5 +22,6 @@ rec {
     license = licenses.mit;
     maintainers = [ maintainers.ulrikstrid ];
     homepage = "https://github.com/c-cube/linol";
+    broken = true;
   };
 }

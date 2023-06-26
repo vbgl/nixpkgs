@@ -13,8 +13,8 @@ let params =
   if lib.versionAtLeast ocaml.version "4.14"
   then {
     name = "lsp";
-    version = "1.14.2";
-    sha256 = "sha256-1R+HYaGbPLGDs5DMN3jmnrZFMhMmPUHgF+s+yNzIVJQ=";
+    version = "1.16.2";
+    sha256 = "sha256-FIfVpOLy1PAjNBBYVRvbi6hsIzZ7fFtP3aOqfcAqrsQ=";
   } else if lib.versionAtLeast ocaml.version "4.13"
   then {
     name = "jsonrpc";
@@ -40,7 +40,6 @@ buildDunePackage rec {
     inherit (params) sha256;
   };
 
-  duneVersion = "3";
   minimalOCamlVersion = "4.06";
 
   buildInputs =
