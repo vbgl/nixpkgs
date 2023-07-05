@@ -1,4 +1,4 @@
-{ lib, stdenv, makeWrapper, fetchurl, which, pkg-config
+{ lib, stdenv, makeWrapper, fetchurl, fetchzip, which, pkg-config
 , libjpeg
 , ocamlPackages
 , awscli2, curl, ffmpeg, youtube-dl
@@ -54,7 +54,12 @@ stdenv.mkDerivation {
     ocamlPackages.alsa
     ocamlPackages.ao
     ocamlPackages.bjack
-    ocamlPackages.cry
+    (ocamlPackages.cry.overrideAttrs (_: {
+      name = "ocaml${ocamlPackages.ocaml-version}-0.6.7";
+      version = "0.6.7";
+      src = fetchzip { url = "https://github.com/savonet/ocaml-cry/archive/refs/tags/v0.6.7.tar.gz";
+        hash = "sha256-1Omp3LBKGTPVwEBd530H0Djn3xiEjOHLqso6S8yIJSQ="; };
+    }))
     ocamlPackages.dssi
     ocamlPackages.faad
     ocamlPackages.fdkaac
