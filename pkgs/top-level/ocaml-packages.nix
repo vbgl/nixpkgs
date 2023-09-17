@@ -180,7 +180,9 @@ let
 
     chacha = callPackage ../development/ocaml-modules/chacha { };
 
-    charInfo_width = callPackage ../development/ocaml-modules/charInfo_width { };
+    charInfo_width = callPackage ../development/ocaml-modules/charInfo_width {
+      camomile = self.camomile.override { version = "2.0.0"; };
+    };
 
     checkseum = callPackage ../development/ocaml-modules/checkseum { };
 

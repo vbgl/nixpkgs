@@ -1,12 +1,13 @@
-{ lib, fetchzip, buildDunePackage, camomile, result }:
+{ lib, fetchFromGitHub, buildDunePackage, camomile, result }:
 
 buildDunePackage rec {
   pname = "charInfo_width";
-  version = "1.1.0";
-  duneVersion = "3";
-  src = fetchzip {
-    url = "https://bitbucket.org/zandoye/charinfo_width/get/${version}.tar.bz2";
-    sha256 = "19mnq9a1yr16srqs8n6hddahr4f9d2gbpmld62pvlw1ps7nfrp9w";
+  version = "2.0.0";
+  src = fetchFromGitHub {
+    owner = "kandu";
+    repo = pname;
+    rev = version;
+    hash = "sha256-JYAa3awHqW5lS4a+TSyK3+xQSi123PhfWwNUt5iOmjg=";
   };
 
   propagatedBuildInputs = [ camomile result ];
