@@ -16389,7 +16389,9 @@ with pkgs;
     inherit (emacs.pkgs.melpaStablePackages) irony;
   };
 
-  heptagon = callPackage ../development/compilers/heptagon { };
+  heptagon = callPackage ../development/compilers/heptagon {
+    ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+  };
 
   holo-build = callPackage ../tools/package-management/holo-build { };
 
