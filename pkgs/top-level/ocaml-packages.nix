@@ -56,9 +56,9 @@ let
 
     atdgen-runtime = callPackage ../development/ocaml-modules/atdgen/runtime.nix { };
 
-    awa = callPackage ../development/ocaml-modules/awa { mtime = mtime_1; };
+    awa = callPackage ../development/ocaml-modules/awa { };
 
-    awa-mirage = callPackage ../development/ocaml-modules/awa/mirage.nix { mtime = mtime_1; };
+    awa-mirage = callPackage ../development/ocaml-modules/awa/mirage.nix { };
 
     ### B ###
 
@@ -319,11 +319,11 @@ let
 
     dns-certify =  callPackage ../development/ocaml-modules/dns/certify.nix { };
 
-    dns-cli =  callPackage ../development/ocaml-modules/dns/cli.nix { mtime = mtime_1; };
+    dns-cli =  callPackage ../development/ocaml-modules/dns/cli.nix { };
 
-    dns-client =  callPackage ../development/ocaml-modules/dns/client.nix { mtime = mtime_1; };
+    dns-client =  callPackage ../development/ocaml-modules/dns/client.nix { };
 
-    dns-client-lwt = callPackage ../development/ocaml-modules/dns/client-lwt.nix { mtime = mtime_1; };
+    dns-client-lwt = callPackage ../development/ocaml-modules/dns/client-lwt.nix { };
 
     dns-client-mirage = callPackage ../development/ocaml-modules/dns/client-mirage.nix { };
 
@@ -584,7 +584,6 @@ let
 
     git-unix = callPackage ../development/ocaml-modules/git/unix.nix {
       git-binary = pkgs.git;
-      mtime = mtime_1;
     };
 
     github = callPackage ../development/ocaml-modules/github {  };
@@ -637,7 +636,7 @@ let
 
     happy-eyeballs = callPackage ../development/ocaml-modules/happy-eyeballs { };
 
-    happy-eyeballs-lwt = callPackage ../development/ocaml-modules/happy-eyeballs/lwt.nix { mtime = mtime_1; };
+    happy-eyeballs-lwt = callPackage ../development/ocaml-modules/happy-eyeballs/lwt.nix { };
 
     happy-eyeballs-mirage = callPackage ../development/ocaml-modules/happy-eyeballs/mirage.nix { };
 
