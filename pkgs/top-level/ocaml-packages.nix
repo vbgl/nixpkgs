@@ -1751,6 +1751,8 @@ let
 
     theora = callPackage ../development/ocaml-modules/theora { };
 
+    thread-local-storage = callPackage ../development/ocaml-modules/thread-local-storage { };
+
     thread-table = callPackage ../development/ocaml-modules/thread-table { };
 
     timed = callPackage ../development/ocaml-modules/timed { };
