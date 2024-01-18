@@ -1777,6 +1777,8 @@ let
 
     trace = callPackage ../development/ocaml-modules/trace { };
 
+    trace-fuchsia = callPackage ../development/ocaml-modules/trace/fuchsia.nix { };
+
     trace-tef = callPackage ../development/ocaml-modules/trace/tef.nix { };
 
     trie = callPackage ../development/ocaml-modules/trie { };
