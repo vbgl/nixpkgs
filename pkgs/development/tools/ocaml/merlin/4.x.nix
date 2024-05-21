@@ -25,8 +25,9 @@ let
     "4.14.1" = "4.14-414";
     "4.14.2" = "4.14-414";
     "5.0.0" = "4.14-500";
-    "5.1.0" = "4.14-501";
-    "5.1.1" = "4.14-501";
+    "5.1.0" = "5.0-502";
+    "5.1.1" = "5.0-502";
+    "5.2.0" = "5.0-502";
   };
 
   hashes = {
@@ -35,9 +36,13 @@ let
     "4.14-414" = "sha256-eQGMyqN8FQHdXE1c94vDQg1kGx6CRDZimBxUctlzmT0=";
     "4.14-500" = "sha256-7CPzJPh1UgzYiX8wPMbU5ZXz1wAJFNQQcp8WuGrR1w4=";
     "4.14-501" = "sha256-t+npbpJAWMLOQpZCeIqi45ByDUQeIkU4vPSUplIDopI=";
+    "5.0-502" = "sha256-yghMLi4I0enOG1D8KleHsqzFNMX94N39RTs+Diz3T6o=";
   };
 
   version = lib.getAttr ocaml.version merlinVersions;
+
+  dir = if lib.versionAtLeast version "5.0" then "${version}" else "v${version}";
+
 in
 
 if !lib.hasAttr ocaml.version merlinVersions
@@ -47,10 +52,9 @@ else
 buildDunePackage {
   pname = "merlin";
   inherit version;
-  duneVersion = "3";
 
   src = fetchurl {
-    url = "https://github.com/ocaml/merlin/releases/download/v${version}/merlin-${version}.tbz";
+    url = "https://github.com/ocaml/merlin/releases/download/${dir}/merlin-${version}.tbz";
     sha256 = hashes."${version}";
   };
 
