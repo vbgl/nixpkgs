@@ -22,6 +22,9 @@ buildDunePackage rec {
     ppx_sexp_conv
   ];
 
+  # base v0.17 compatibility
+  patches = [ ./tdigest.patch ];
+
   passthru.updateScript = nix-update-script { };
 
   meta = with lib; {
