@@ -1390,9 +1390,7 @@ let
       inherit (pkgs) unzip;
     };
 
-    opam-repository = callPackage ../development/ocaml-modules/opam-repository {
-      inherit (pkgs) unzip;
-    };
+    opam-repository = callPackage ../development/ocaml-modules/opam-repository { };
 
     opam-state = callPackage ../development/ocaml-modules/opam-state {
       inherit (pkgs) unzip;
