@@ -1748,6 +1748,8 @@ let
 
     stringext = callPackage ../development/ocaml-modules/stringext { };
 
+    swhid_core = callPackage ../development/ocaml-modules/swhid_core { };
+
     syslog = callPackage ../development/ocaml-modules/syslog { };
 
     syslog-message = callPackage ../development/ocaml-modules/syslog-message { };
