@@ -1,24 +1,24 @@
-{ lib, fetchurl, buildDunePackage
-, alcotest, cstruct-unix
+{ lib, fetchFromGitHub, buildDunePackage
+, alcotest
 , asn1-combinators, domain-name, fmt, gmap, pbkdf, mirage-crypto, mirage-crypto-ec, mirage-crypto-pk, ipaddr
-, logs, base64
+, logs, base64, ohex
 }:
 
 buildDunePackage rec {
   minimalOCamlVersion = "4.08";
 
   pname = "x509";
-  version = "0.16.5";
+  version = "1.0.2";
 
-  duneVersion = "3";
-
-  src = fetchurl {
-    url = "https://github.com/mirleft/ocaml-x509/releases/download/v${version}/x509-${version}.tbz";
-    hash = "sha256-FJ4lpf6jf2GfsmkL7lwA8BydzzHTNfj/yqs5p1OMzZk=";
+  src = fetchFromGitHub {
+    owner = "mirleft";
+    repo = "ocaml-x509";
+    rev = "v${version}";
+    hash = "sha256-9cDvHISpjwOFEOa+D0GiscstlCZ69n/EibegJm27XxI=";
   };
 
-  checkInputs = [ alcotest cstruct-unix ];
-  propagatedBuildInputs = [ asn1-combinators domain-name fmt gmap mirage-crypto mirage-crypto-pk mirage-crypto-ec pbkdf logs base64 ipaddr ];
+  checkInputs = [ alcotest ];
+  propagatedBuildInputs = [ asn1-combinators domain-name fmt gmap mirage-crypto mirage-crypto-pk mirage-crypto-ec pbkdf logs base64 ipaddr ohex ];
 
   doCheck = true;
 
