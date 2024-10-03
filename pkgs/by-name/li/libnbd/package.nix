@@ -16,8 +16,7 @@
   autoreconfHook,
 }:
 
-lib.throwIf (buildOcamlBindings && !lib.versionAtLeast ocamlPackages.ocaml.version "4.05")
-  "OCaml binding are not available for OCaml < 4.05"
+assert lib.assertMsg (buildOcamlBindings -> lib.versionAtLeast ocamlPackages.ocaml.version "4.05") "OCaml bindings are not available for OCaml < 4.05";
 
 stdenv.mkDerivation rec {
   pname = "libnbd";
