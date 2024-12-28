@@ -11,14 +11,18 @@
 
 buildDunePackage rec {
   pname = "linol";
-  version = "0.6";
+  version = "0.7";
 
   minimalOCamlVersion = "4.14";
 
   src = fetchurl {
     url = "https://github.com/c-cube/linol/releases/download/v${version}/linol-${version}.tbz";
-    hash = "sha256-MwEisPJdzZN1VRnssotvExNMYOQdffS+Y2B8ZSUDVfo=";
+    hash = "sha256-IyUUpC2ea8BTDFN4Xg0Kn2axWcN5EQYM1klMG8Ww4Gk=";
   };
+
+  postPatch = ''
+    substituteInPlace src/dune --replace-warn atomic ""
+  '';
 
   propagatedBuildInputs = [
     yojson
