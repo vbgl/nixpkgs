@@ -194,6 +194,7 @@ with self;
     pname = "async_ssl";
     hash = "1b7f7p3xj4jr2n2dxy2lp7a9k7944w6x2nrg6524clvcsd1ax4hn";
     meta.description = "Async wrappers for SSL";
+    meta.broken = true;
     buildInputs = [ dune-configurator ];
     propagatedBuildInputs = [
       async
