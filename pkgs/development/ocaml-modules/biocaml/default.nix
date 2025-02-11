@@ -56,5 +56,6 @@ buildDunePackage rec {
     homepage = "http://${pname}.org";
     maintainers = [ maintainers.bcdarwin ];
     license = licenses.gpl2;
+    broken = true; # Not compatible with GCC 14
   };
 }
