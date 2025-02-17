@@ -4,34 +4,32 @@
   buildDunePackage,
   cppo,
   gettext,
+  dune-site,
   fileutils,
-  ounit,
+  ounit2,
 }:
 
 buildDunePackage rec {
   pname = "gettext";
-  version = "0.4.2";
-
-  minimalOCamlVersion = "4.03";
+  version = "0.5.0";
 
   src = fetchurl {
-    url = "https://github.com/gildor478/ocaml-gettext/releases/download/v${version}/gettext-v${version}.tbz";
-    sha256 = "19ynsldb21r539fiwz1f43apsdnx7hj2a2d9qr9wg2hva9y2qrwb";
+    url = "https://github.com/gildor478/ocaml-gettext/releases/download/v${version}/gettext-${version}.tbz";
+    hash = "sha256-CN2d9Vsq8YOOIxK+S+lCtDddvBjCrtDKGSRIh1DjT10=";
   };
 
   nativeBuildInputs = [ cppo ];
 
   propagatedBuildInputs = [
     gettext
+    dune-site
     fileutils
   ];
 
-  # Tests for version 0.4.2 are not compatible with OUnit 2.2.6
+  # Tests of version 0.5.0 fail
   doCheck = false;
 
-  checkInputs = [ ounit ];
-
-  dontStrip = true;
+  checkInputs = [ ounit2 ];
 
   meta = with lib; {
     description = "OCaml Bindings to gettext";
