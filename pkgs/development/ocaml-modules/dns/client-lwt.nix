@@ -9,7 +9,7 @@
   alcotest,
   ca-certs,
   happy-eyeballs,
-  happy-eyeballs-lwt,
+  happy-eyeballs,
   tls-lwt,
 }:
 
@@ -27,7 +27,7 @@ buildDunePackage {
     happy-eyeballs-lwt
     tls-lwt
     mtime
-    mirage-crypto-rng-lwt
+    mirage-crypto-rng
   ];
   checkInputs = [ alcotest ];
   doCheck = true;
