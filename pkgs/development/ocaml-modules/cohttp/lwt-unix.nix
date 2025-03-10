@@ -8,15 +8,13 @@
   fmt,
   logs,
   magic-mime,
-  ounit,
+  ounit2,
   cacert,
 }:
 
 buildDunePackage {
   pname = "cohttp-lwt-unix";
   inherit (cohttp-lwt) version src;
-
-  duneVersion = "3";
 
   buildInputs = [
     cmdliner
@@ -36,7 +34,7 @@ buildDunePackage {
   # https://github.com/mirage/ocaml-cohttp/issues/675#issuecomment-830692742
   doCheck = false;
   checkInputs = [
-    ounit
+    ounit2
     cacert
   ];
 
