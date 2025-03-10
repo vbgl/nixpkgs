@@ -15,9 +15,9 @@
   sexplib0,
   ipaddr,
   magic-mime,
-  ounit,
-  mirage-crypto,
+  ounit2,
   core,
+  digestif,
 }:
 
 buildDunePackage {
@@ -49,12 +49,11 @@ buildDunePackage {
     ipaddr
   ];
 
-  # Examples don't compile with core 0.15.  See https://github.com/mirage/ocaml-cohttp/pull/864.
-  doCheck = false;
+  doCheck = true;
   checkInputs = [
-    ounit
-    mirage-crypto
+    ounit2
     core
+    digestif
   ];
 
   meta = cohttp.meta // {
