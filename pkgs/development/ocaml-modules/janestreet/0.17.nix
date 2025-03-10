@@ -437,6 +437,7 @@ with self;
       ppx_jane
       uri-sexp
     ];
+    meta.broken = lib.versionAtLeast cohttp.version "6.0";
   };
 
   cohttp_static_handler = janePackage {
@@ -444,6 +445,12 @@ with self;
     hash = "sha256-RB/sUq1tL8A3m9YhHHx2LFqoExTX187VeZI9MRb1NeA=";
     meta.description = "Library for easily creating a cohttp handler for static files";
     propagatedBuildInputs = [ cohttp-async ];
+    # Fix for cohttp 6
+    preBuild = ''
+      substituteInPlace src/cohttp_static_handler.ml \
+        --replace-warn 'respond_with_file ?flush' respond_with_file \
+        --replace-warn 'respond_string ?flush' respond_string
+    '';
   };
 
   content_security_policy = janePackage {

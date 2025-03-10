@@ -31,6 +31,11 @@ buildDunePackage rec {
     hash = "sha256-LkhnlOd5rI8cbOYbVqrkRJ2qTcRn3Zzl6GjQEdjBjVA=";
   };
 
+  preBuild = ''
+    substituteInPlace src/tracing_tool_output.ml \
+      --replace-warn 'respond_string ?flush' respond_string
+  '';
+
   nativeBuildInputs = [
     ocaml-crunch
   ];

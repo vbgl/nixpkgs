@@ -14,10 +14,8 @@ buildDunePackage {
   inherit (resto)
     src
     version
-    meta
     doCheck
     ;
-  duneVersion = "3";
 
   propagatedBuildInputs = [
     resto
@@ -28,4 +26,7 @@ buildDunePackage {
     conduit-lwt-unix
     lwt
   ];
+  meta = resto.meta // {
+    broken = true; # Not compatible with cohttp 6
+  };
 }
