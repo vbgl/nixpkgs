@@ -15,10 +15,8 @@ buildDunePackage {
   inherit (resto)
     src
     version
-    meta
     doCheck
     ;
-  duneVersion = "3";
 
   propagatedBuildInputs = [
     resto
@@ -30,4 +28,8 @@ buildDunePackage {
     uri
     lwt
   ];
+
+  meta = resto.meta // {
+    broken = true;
+  };
 }
