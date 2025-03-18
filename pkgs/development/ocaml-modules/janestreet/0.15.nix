@@ -642,6 +642,7 @@ with self;
       ppx_jane
     ];
     meta.description = "Files contents as module constants";
+    meta.broken = true; # Not compatible with GCC 14
   };
 
   ocaml_intrinsics = janePackage {
