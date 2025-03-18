@@ -679,6 +679,7 @@ with self;
     ];
     meta = {
       description = "File Diff using the Patience Diff algorithm";
+      broken = true; # Not compatible with GCC 14
     };
   };
 
