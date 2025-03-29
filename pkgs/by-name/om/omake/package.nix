@@ -1,18 +1,20 @@
 {
   lib,
   stdenv,
-  fetchurl,
+  fetchFromGitHub,
   ocaml,
+  version ? "0.10.7",
 }:
 
-stdenv.mkDerivation rec {
-
+stdenv.mkDerivation {
   pname = "omake";
-  version = "0.10.6";
+  inherit version;
 
-  src = fetchurl {
-    url = "http://download.camlcity.org/download/${pname}-${version}.tar.gz";
-    hash = "sha256-AuSZEnybyk8HaDZ7mbwDqjFXMXVQ7TDRuRU/aRY8/yE=";
+  src = fetchFromGitHub {
+    owner = "ocaml-omake";
+    repo = "omake";
+    tag = "omake-${version}";
+    hash = "sha256-5ZOdY3uGcI0KGpnr7epUwe2ueKCoLeaHGzaiTiXLNoc=";
   };
 
   strictDeps = true;
