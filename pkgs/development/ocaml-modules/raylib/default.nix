@@ -36,5 +36,6 @@ buildDunePackage rec {
     homepage = "https://tjammer.github.io/raylib-ocaml";
     maintainers = with lib.maintainers; [ r17x ];
     license = lib.licenses.mit;
+    broken = true;
   };
 }
