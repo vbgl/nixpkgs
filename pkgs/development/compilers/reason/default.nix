@@ -16,13 +16,13 @@
 
 buildDunePackage rec {
   pname = "reason";
-  version = "3.15.0";
+  version = "3.16.0";
 
   minimalOCamlVersion = "4.11";
 
   src = fetchurl {
     url = "https://github.com/reasonml/reason/releases/download/${version}/reason-${version}.tbz";
-    hash = "sha256-7D0gJfQ5Hw0riNIFPmJ6haoa3dnFEyDp5yxpDgX7ZqY=";
+    hash = "sha256-R7DkOn00jiqFBlirS+xaT7u5/U/z7IocGBZRFVjFNk4=";
   };
 
   nativeBuildInputs = [
