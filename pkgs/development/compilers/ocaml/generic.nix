@@ -30,7 +30,7 @@ in
   spaceTimeSupport ? false,
   unsafeStringSupport ? false,
   framePointerSupport ? false,
-  noNakedPointers ? false,
+  noNakedPointers ? lib.versionOlder version "5.0",
 }:
 
 assert useX11 -> safeX11 stdenv;
