@@ -78,7 +78,9 @@ let
 
         backoff = callPackage ../development/ocaml-modules/backoff { };
 
-        bap = janeStreet_0_15.bap;
+        bap = callPackage ../development/ocaml-modules/bap {
+          inherit (pkgs.llvmPackages_14) llvm;
+        };
 
         base64 = callPackage ../development/ocaml-modules/base64 { };
 
@@ -954,26 +956,6 @@ let
                   zstd
                   ;
               };
-
-              # Packages that are not part of janestreet libraries, but still depend
-              # on v0.15 are kept in this scope, too.
-
-              bap =
-                let
-                  ppxlib = jsDeps.ppxlib;
-                  lwt_ppx = self.lwt_ppx.override { inherit ppxlib; };
-                  sedlex = self.sedlex.override { inherit ppxlib ppx_expect; };
-                in
-                callPackage ../development/ocaml-modules/bap {
-                  inherit (pkgs.llvmPackages_14) llvm;
-                  ezjsonm = self.ezjsonm.override { inherit sexplib0; };
-                  ppx_bitstring = self.ppx_bitstring.override { inherit ppxlib; };
-                  ocurl = self.ocurl.override { inherit lwt_ppx; };
-                  piqi = self.piqi.override { inherit sedlex; };
-                  piqi-ocaml = self.piqi-ocaml.override { inherit piqi; };
-                };
-
-              ppx_bap = callPackage ../development/ocaml-modules/ppx_bap { };
             }
           )).overrideScope
             liftJaneStreet;
@@ -1702,7 +1684,7 @@ let
 
         pprint = callPackage ../development/ocaml-modules/pprint { };
 
-        ppx_bap = janeStreet_0_15.ppx_bap;
+        ppx_bap = callPackage ../development/ocaml-modules/ppx_bap { };
 
         ppx_bitstring = callPackage ../development/ocaml-modules/bitstring/ppx.nix { };
 
