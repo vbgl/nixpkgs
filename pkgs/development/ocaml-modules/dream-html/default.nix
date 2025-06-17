@@ -3,11 +3,14 @@
   buildDunePackage,
   dream,
   pure-html,
+  ppxlib,
 }:
 
 buildDunePackage {
   pname = "dream-html";
   inherit (pure-html) src version;
+
+  buildInputs = [ ppxlib ];
 
   propagatedBuildInputs = [
     pure-html
