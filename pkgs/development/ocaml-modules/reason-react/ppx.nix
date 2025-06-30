@@ -27,5 +27,6 @@ buildDunePackage {
     maintainers = [
       lib.maintainers.vog
     ];
+    broken = lib.versionAtLeast ppxlib.version "0.36";
   };
 }
