@@ -1679,7 +1679,9 @@ let
 
         ppx_deriving_rpc = callPackage ../development/ocaml-modules/ppx_deriving_rpc { };
 
-        ppx_deriving_yaml = callPackage ../development/ocaml-modules/ppx_deriving_yaml { };
+        ppx_deriving_yaml = callPackage ../development/ocaml-modules/ppx_deriving_yaml {
+          mdx = mdx.override { inherit logs; };
+        };
 
         ppx_deriving_yojson = callPackage ../development/ocaml-modules/ppx_deriving_yojson { };
 
