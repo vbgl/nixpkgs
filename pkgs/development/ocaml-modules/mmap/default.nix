@@ -9,10 +9,6 @@ buildDunePackage rec {
   pname = "mmap";
   version = "1.2.0";
 
-  useDune2 = true;
-
-  minimalOCamlVersion = "4.02.3";
-
   src = fetchurl {
     url = "https://github.com/mirage/mmap/releases/download/v${version}/mmap-${version}.tbz";
     hash = "sha256-FgKoq8jiMvqUdxpS5UDleAtAwvJ2Lu5q+9koZQIRbds=";
