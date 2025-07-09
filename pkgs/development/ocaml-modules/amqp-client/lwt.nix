@@ -1,7 +1,5 @@
 {
   buildDunePackage,
-  callPackage,
-  amqp-client-base ? callPackage ./base.nix { },
   lwt,
   lwt_log,
   amqp-client,
@@ -11,19 +9,20 @@
 buildDunePackage {
   pname = "amqp-client-lwt";
 
-  inherit (amqp-client-base) version minimalOCamlVersion src;
+  inherit (amqp-client) version src;
 
-  buildInputs = [
+  buildInputs = [ ezxmlm ];
+
+  propagatedBuildInputs = [
     lwt
     lwt_log
     amqp-client
     uri
-    ezxmlm
   ];
 
   doCheck = true;
 
-  meta = amqp-client-base.meta // {
+  meta = amqp-client.meta // {
     description = "Amqp client library, lwt version";
   };
 }
