@@ -27,14 +27,15 @@ buildDunePackage rec {
     domain-local-timeout
     multicore-magic
     backoff
+  ];
+
+  doCheck = true;
+  nativeCheckInputs = [ mdx.bin ];
+  checkInputs = [
+    alcotest
     domain_shims
     mdx
   ];
-
-  nativeBuildInputs = [ mdx ];
-
-  doCheck = true;
-  checkInputs = [ alcotest ];
 
   meta = {
     homepage = "https://github.com/ocaml-multicore/kcas";
