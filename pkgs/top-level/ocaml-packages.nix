@@ -1938,6 +1938,8 @@ let
 
         stdint = callPackage ../development/ocaml-modules/stdint { };
 
+        stdlib-random = callPackage ../development/ocaml-modules/stdlib-random { };
+
         stdlib-shims = callPackage ../development/ocaml-modules/stdlib-shims { };
 
         stdune = callPackage ../development/ocaml-modules/stdune { };
