@@ -20,7 +20,7 @@
   ca-certs,
   cohttp,
   cohttp-lwt-unix,
-  lwt_log,
+  logs-syslog,
   re,
   cryptokit,
   xml-light,
@@ -52,7 +52,7 @@ let
 in
 
 buildDunePackage rec {
-  version = "6.0.0";
+  version = "6.0.0-git-20250706";
   pname = "ocsigenserver";
 
   minimalOCamlVersion = "4.08";
@@ -60,11 +60,9 @@ buildDunePackage rec {
   src = fetchFromGitHub {
     owner = "ocsigen";
     repo = "ocsigenserver";
-    tag = version;
-    hash = "sha256-T3bgPZpDO6plgebLJDBtBuR2eR/bN3o24UAUv1VwgtI=";
+    rev = "4c79e09b03607685687b77e33812e099902387a3";
+    hash = "sha256-3ZUsJ3LlktZ5MhwIvo+7calAIpttxcyAt8mdDaM16FE=";
   };
-
-  patches = [ ./conduit.patch ];
 
   nativeBuildInputs = [
     makeWrapper
@@ -81,7 +79,7 @@ buildDunePackage rec {
     cohttp-lwt-unix
     cryptokit
     ipaddr
-    lwt_log
+    logs-syslog
     lwt_ssl
     re
     xml-light
@@ -96,10 +94,6 @@ buildDunePackage rec {
   dontAddPrefix = true;
   dontAddStaticConfigureFlags = true;
   configurePlatforms = [ ];
-
-  postConfigure = ''
-    make -C src confs
-  '';
 
   postInstall = ''
     make install.files

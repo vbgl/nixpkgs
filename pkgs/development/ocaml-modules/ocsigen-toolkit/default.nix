@@ -13,7 +13,7 @@
 stdenv.mkDerivation rec {
   pname = "ocsigen-toolkit";
   name = "ocaml${ocaml.version}-${pname}-${version}";
-  version = "4.1.0";
+  version = "4.1.0-git-20250422";
 
   propagatedBuildInputs = [
     calendar
@@ -41,8 +41,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "ocsigen";
     repo = pname;
-    rev = version;
-    hash = "sha256-1kw2HANajHDdMmjuYNB79ZDqy2Ml02nc5s+cJzIoxQ8=";
+    rev = "5127728cfdf1f5370b8640928ce5edbc9404e02d";
+    hash = "sha256-zUZt6cBhMjT3ZO5R4qoEU0EEET3QWvLyY7nFZ/PRx0M=";
   };
 
   meta = {
