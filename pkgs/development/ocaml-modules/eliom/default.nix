@@ -17,19 +17,16 @@
   ocsipersist,
 }:
 
-lib.throwIf (lib.versionAtLeast ocaml.version "5.3")
-  "eliom is not available for OCaml ${ocaml.version}"
-
   buildDunePackage
   rec {
     pname = "eliom";
-    version = "11.1.1";
+    version = "11.1.1-git-20250706";
 
     src = fetchFromGitHub {
       owner = "ocsigen";
       repo = "eliom";
-      rev = version;
-      hash = "sha256-ALuoyO6axNQEeBteBVIFwdoSrbLxxcaSTObAcLPGIvo=";
+      rev = "fda77bcee75ba053c526e5e7fc5982a4c7ff0ad5";
+      hash = "sha256-GE6tk+vp1tWpd4adTwaJhLEs/+nZocn9SKH6D0z2xP4=";
     };
 
     nativeBuildInputs = [
