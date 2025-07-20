@@ -16,7 +16,7 @@
 
 stdenv.mkDerivation rec {
   pname = "ocaml${ocaml.version}-ocsigen-start";
-  version = "7.1.0";
+  version = "7.1.0-git-20250422";
 
   nativeBuildInputs = [
     ocaml
@@ -36,14 +36,15 @@ stdenv.mkDerivation rec {
   strictDeps = true;
 
   patches = [
+    ./logs.patch
     ./templates-dir.patch
   ];
 
   src = fetchFromGitHub {
     owner = "ocsigen";
     repo = "ocsigen-start";
-    rev = version;
-    hash = "sha256-2DFFceUI7BYgGKvJ1sZphLWt/Rusa5Y86yc94Mi/quo=";
+    rev = "a4dcc73734413d1340371bee48e84fe4897eba15";
+    hash = "sha256-wVlLus60x2G3FNw78zKiLp5qBBDgqQ/ZcZHhDqyiXEU=";
   };
 
   preInstall = ''
