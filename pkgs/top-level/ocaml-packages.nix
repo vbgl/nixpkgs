@@ -1140,6 +1140,7 @@ let
         melange = callPackage ../development/tools/ocaml/melange { };
 
         melange-json = callPackage ../development/ocaml-modules/melange-json { };
+        melange-json-native = callPackage ../development/ocaml-modules/melange-json/native.nix { };
 
         memprof-limits = callPackage ../development/ocaml-modules/memprof-limits { };
 
