@@ -1595,8 +1595,6 @@ let
 
         paf = callPackage ../development/ocaml-modules/paf { };
 
-        paf-cohttp = callPackage ../development/ocaml-modules/paf/cohttp.nix { };
-
         parany = callPackage ../development/ocaml-modules/parany { };
 
         parmap = callPackage ../development/ocaml-modules/parmap { };
