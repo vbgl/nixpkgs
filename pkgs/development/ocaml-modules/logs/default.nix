@@ -3,6 +3,7 @@
   stdenv,
   fetchurl,
   ocaml,
+  version ? if lib.versionAtLeast ocaml.version "4.14" then "0.9.0" else "0.8.0",
   topkg,
   buildTopkgPackage,
   cmdlinerSupport ? true,
@@ -15,15 +16,29 @@
   lwt,
 }:
 
+let
+  param =
+    {
+      "0.8.0" = {
+        minimalOCamlVersion = "4.03";
+        hash = "sha256-mmFRQJX6QvMBIzJiO2yNYF1Ce+qQS2oNF3+OwziCNtg=";
+      };
+      "0.9.0" = {
+        minimalOCamlVersion = "4.14";
+        hash = "sha256-7pcGW6Qc4o8Z3qlFPGvsTg7yYWWtc5TEEx6gxlwPBtU=";
+      };
+    }
+    .${version};
+in
 buildTopkgPackage rec {
-  pname = "logs";
-  version = "0.8.0";
+  inherit version;
+  inherit (param) minimalOCamlVersion;
 
-  minimalOCamlVersion = "4.03";
+  pname = "logs";
 
   src = fetchurl {
     url = "https://erratique.ch/software/logs/releases/logs-${version}.tbz";
-    hash = "sha256-mmFRQJX6QvMBIzJiO2yNYF1Ce+qQS2oNF3+OwziCNtg=";
+    inherit (param) hash;
   };
 
   buildInputs = lib.optional cmdlinerSupport cmdliner;
@@ -55,7 +70,10 @@ buildTopkgPackage rec {
     description = "Logging infrastructure for OCaml";
     homepage = "https://erratique.ch/software/logs";
     inherit (ocaml.meta) platforms;
-    maintainers = with lib.maintainers; [ sternenseemann ];
+    maintainers = with lib.maintainers; [
+      sternenseemann
+      toastal
+    ];
     license = lib.licenses.isc;
   };
 }
