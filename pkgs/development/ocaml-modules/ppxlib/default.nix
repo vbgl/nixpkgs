@@ -7,7 +7,7 @@
     if lib.versionAtLeast ocaml.version "4.07" then
       if lib.versionAtLeast ocaml.version "4.08" then
         if lib.versionAtLeast ocaml.version "4.11" then
-          if lib.versionAtLeast ocaml.version "5.03" then "0.36.0" else "0.33.0"
+          if lib.versionAtLeast ocaml.version "5.03" then "0.36.1" else "0.33.0"
         else
           "0.24.0"
       else
@@ -87,8 +87,8 @@ let
         sha256 = "sha256-/6RO9VHyO3XiHb1pijAxBDE4Gq8UC5/kuBwucKLSxjo=";
         min_version = "4.07";
       };
-      "0.36.0" = {
-        sha256 = "sha256-WrobzhTFMQhhQTARDIQ9AEv5O9LPOgd4/XCGuFOQpDQ=";
+      "0.36.1" = {
+        sha256 = "sha256-YVK6w+6hhUQWpDWmL6QHpAKr80e+YjwkH79GSA5x77M=";
         min_version = "4.08";
       };
     }
