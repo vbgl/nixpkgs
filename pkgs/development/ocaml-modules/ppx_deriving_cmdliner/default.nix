@@ -34,7 +34,7 @@ buildDunePackage rec {
   ];
 
   propagatedBuildInputs = [
-    cmdliner
+    (cmdliner.override { version = "1.3.0"; })
     ppx_deriving
     ppxlib
     result
