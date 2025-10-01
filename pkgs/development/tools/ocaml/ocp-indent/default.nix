@@ -7,7 +7,7 @@
 }:
 
 buildDunePackage rec {
-  version = "1.8.2";
+  version = "1.9.0";
   pname = "ocp-indent";
 
   duneVersion = "3";
@@ -16,7 +16,7 @@ buildDunePackage rec {
     owner = "OCamlPro";
     repo = "ocp-indent";
     rev = version;
-    sha256 = "sha256-IyvURw/6R0eKrnahV1fqLV0iIeypykrmxDbliECgbLc=";
+    sha256 = "sha256-71dbZ8c842MYZfHad6RT0E48JlgzJSHnQgLVA5dGLv8=";
   };
 
   minimalOCamlVersion = "4.03";
