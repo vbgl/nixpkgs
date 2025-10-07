@@ -690836,7 +690836,7 @@ self: {
         sdl2
         vector
       ];
-      libraryPkgconfigDepends = [ libtcod ];
+      #libraryPkgconfigDepends = [ libtcod ];
       description = "Bindings to libtcod roguelike engine";
       license = lib.licenses.bsd3;
       platforms = lib.platforms.linux;
