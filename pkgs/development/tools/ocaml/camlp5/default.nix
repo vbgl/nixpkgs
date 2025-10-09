@@ -22,13 +22,13 @@ else
     params =
       if lib.versionAtLeast ocaml.version "4.12" && !legacy then
         rec {
-          version = "8.03.02";
+          version = "8.04.00";
 
           src = fetchFromGitHub {
             owner = "camlp5";
             repo = "camlp5";
-            rev = version;
-            hash = "sha256-nz+VfGR/6FdBvMzPPpVpviAXXBWNqM3Ora96Yzx964o=";
+            tag = version;
+            hash = "sha256-5IQVGm/tqEzXmZmSYGbGqX+KN9nQLQgw+sBP+F2keXo=";
           };
 
           nativeBuildInputs = [
@@ -81,7 +81,7 @@ else
 
       preConfigure = ''
         configureFlagsArray=(--strict --libdir $out/lib/ocaml/${ocaml.version}/site-lib)
-        patchShebangs ./config/find_stuffversion.pl etc/META.pl
+        patchShebangs ./config/find_stuffversion.pl etc/META.pl tools/ ocaml_src/tools/
       '';
 
       buildFlags = [ "world.opt" ];
