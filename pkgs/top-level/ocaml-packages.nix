@@ -1592,6 +1592,8 @@ let
 
         opam-repository = callPackage ../development/ocaml-modules/opam-repository { };
 
+        opam-solver = callPackage ../development/ocaml-modules/opam-solver { };
+
         opam-state = callPackage ../development/ocaml-modules/opam-state { };
 
         opium = callPackage ../development/ocaml-modules/opium { };
