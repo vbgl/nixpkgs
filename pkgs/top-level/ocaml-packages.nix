@@ -1586,6 +1586,8 @@ let
           inherit (pkgs) opam;
         };
 
+        opam-client = callPackage ../development/ocaml-modules/opam-client { };
+
         opam-file-format = callPackage ../development/ocaml-modules/opam-file-format { };
 
         opam-format = callPackage ../development/ocaml-modules/opam-format { };
