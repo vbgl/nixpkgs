@@ -21,7 +21,6 @@
   ssl,
   unstrctrd,
   uri,
-  yojson,
   # for mirage-crypro-rng-lwt 1.2.0
   # It is removed from mirage-crypto 2.1.0 now.
   fetchurl,
@@ -82,7 +81,6 @@ buildDunePackage {
     ssl
     unstrctrd
     uri
-    yojson
   ];
 
   meta = dream-pure.meta // {

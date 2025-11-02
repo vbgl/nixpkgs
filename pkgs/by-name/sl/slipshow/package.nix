@@ -31,7 +31,11 @@ ocamlPackages.buildDunePackage rec {
     base64
     bos
     cmdliner
-    dream
+    (dream.override {
+      graphql-lwt = graphql-lwt.override {
+        graphql = graphql.override { yojson = yojson.override { version = "2.2.2"; }; };
+      };
+    })
     fmt
     fpath
     irmin-watcher

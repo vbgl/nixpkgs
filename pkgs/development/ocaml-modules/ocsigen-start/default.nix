@@ -7,7 +7,6 @@
   ocsigen-toolkit,
   pgocaml_ppx,
   safepass,
-  yojson,
   cohttp-lwt-unix,
   eliom,
   resource-pooling,
@@ -28,7 +27,6 @@ stdenv.mkDerivation rec {
     pgocaml_ppx
     safepass
     ocsigen-toolkit
-    yojson
     resource-pooling
     cohttp-lwt-unix
   ];

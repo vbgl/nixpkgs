@@ -1,7 +1,6 @@
 {
   buildDunePackage,
   github,
-  yojson,
   atdgen,
   atdgen-runtime,
 }:
@@ -19,7 +18,6 @@ buildDunePackage {
   ];
 
   propagatedBuildInputs = [
-    yojson
     atdgen-runtime
   ];
 

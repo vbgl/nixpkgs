@@ -12,7 +12,6 @@
   js_of_ocaml-ppx,
   ppx_deriving_yojson,
   uri,
-  yojson,
   lwt,
   xmlm,
 }:
@@ -34,8 +33,6 @@ buildDunePackage rec {
 
   minimalOCamlVersion = "4.10";
 
-  duneVersion = "3";
-
   src = fetchFromGitHub {
     owner = "logseq";
     repo = "mldoc";
@@ -56,7 +53,6 @@ buildDunePackage rec {
   propagatedBuildInputs = [
     angstrom'
     uri'
-    yojson
     ppx_deriving_yojson
     xmlm
   ];

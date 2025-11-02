@@ -6,7 +6,6 @@
   cohttp-lwt,
   atdgen,
   atdgen-runtime,
-  yojson,
   iso8601,
   stringext,
 }:
@@ -36,7 +35,6 @@ buildDunePackage rec {
     uri
     cohttp-lwt
     atdgen-runtime
-    yojson
     iso8601
   ];
 

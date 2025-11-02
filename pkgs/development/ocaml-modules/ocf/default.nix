@@ -8,8 +8,7 @@
 buildDunePackage rec {
   pname = "ocf";
   version = "0.9.0";
-  duneVersion = "3";
-  minimalOCamlVersion = "4.03";
+  patches = ./yojson.patch;
   src = fetchFromGitLab {
     domain = "framagit.org";
     owner = "zoggy";

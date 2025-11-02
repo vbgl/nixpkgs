@@ -10,8 +10,6 @@ buildDunePackage {
 
   inherit (graphql) version src;
 
-  duneVersion = "3";
-
   propagatedBuildInputs = [
     graphql
     ocaml_lwt

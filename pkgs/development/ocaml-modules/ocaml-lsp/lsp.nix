@@ -4,6 +4,7 @@
   cppo,
   stdlib-shims,
   ppx_yojson_conv_lib,
+  yojson,
   ocaml-syntax-shims,
   jsonrpc,
   omd,
@@ -62,7 +63,6 @@ buildDunePackage rec {
       [
         pp
         re
-        ppx_yojson_conv_lib
         octavius
         dune-build-info
         dune-rpc
@@ -77,7 +77,6 @@ buildDunePackage rec {
       [
         pp
         re
-        ppx_yojson_conv_lib
         octavius
         dune-build-info
         dune-rpc
@@ -109,10 +108,18 @@ buildDunePackage rec {
   nativeBuildInputs = lib.optional (lib.versionOlder version "1.7.0") cppo;
 
   propagatedBuildInputs =
-    if lib.versionAtLeast version "1.14.0" then
+    if lib.versionAtLeast version "1.23.1" then
       [
         jsonrpc
         ppx_yojson_conv_lib
+        uutf
+      ]
+    else if lib.versionAtLeast version "1.14.0" then
+      [
+        jsonrpc
+        (ppx_yojson_conv_lib.override {
+          yojson = yojson.override { version = "2.2.2"; };
+        })
         uutf
       ]
     else if lib.versionAtLeast version "1.10.0" then
@@ -120,8 +127,21 @@ buildDunePackage rec {
         dyn
         jsonrpc
         ordering
-        ppx_yojson_conv_lib
+        (ppx_yojson_conv_lib.override {
+          yojson = yojson.override { version = "2.2.2"; };
+        })
         stdune
+        uutf
+      ]
+    else if lib.versionAtLeast version "1.9.0" then
+      [
+        csexp
+        jsonrpc
+        (pp.override { version = "1.2.0"; })
+        (ppx_yojson_conv_lib.override {
+          yojson = yojson.override { version = "2.2.2"; };
+        })
+        result
         uutf
       ]
     else if lib.versionAtLeast version "1.7.0" then

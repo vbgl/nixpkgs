@@ -68,13 +68,17 @@ let
 
         astring = callPackage ../development/ocaml-modules/astring { };
 
-        atd = callPackage ../development/ocaml-modules/atd { };
+        atd = callPackage ../development/ocaml-modules/atd {
+          yojson = yojson.override { version = "2.2.2"; };
+        };
 
         atdgen = callPackage ../development/ocaml-modules/atdgen { };
 
         atdgen-codec-runtime = callPackage ../development/ocaml-modules/atdgen/codec-runtime.nix { };
 
-        atdgen-runtime = callPackage ../development/ocaml-modules/atdgen/runtime.nix { };
+        atdgen-runtime = callPackage ../development/ocaml-modules/atdgen/runtime.nix {
+          yojson = yojson.override { version = "2.2.2"; };
+        };
 
         augeas = callPackage ../development/ocaml-modules/augeas {
           inherit (pkgs) augeas;
@@ -422,7 +426,21 @@ let
 
         dolmen_loop = callPackage ../development/ocaml-modules/dolmen/loop.nix { };
 
-        dolmen_lsp = callPackage ../development/ocaml-modules/dolmen/lsp.nix { };
+        dolmen_lsp = callPackage ../development/ocaml-modules/dolmen/lsp.nix (
+          let
+            yojson = self.yojson.override { version = "2.2.2"; };
+          in
+          {
+            lsp = lsp.override {
+              jsonrpc = jsonrpc.override {
+                inherit yojson;
+              };
+              ppx_yojson_conv_lib = ppx_yojson_conv_lib.override {
+                inherit yojson;
+              };
+            };
+          }
+        );
 
         dolmen_model = callPackage ../development/ocaml-modules/dolmen/model.nix { };
 
@@ -956,7 +974,9 @@ let
 
         js_of_ocaml = callPackage ../development/tools/ocaml/js_of_ocaml { };
 
-        js_of_ocaml-compiler = callPackage ../development/tools/ocaml/js_of_ocaml/compiler.nix { };
+        js_of_ocaml-compiler = callPackage ../development/tools/ocaml/js_of_ocaml/compiler.nix {
+          yojson = yojson.override { version = "2.2.2"; };
+        };
 
         js_of_ocaml-lwt = callPackage ../development/tools/ocaml/js_of_ocaml/lwt.nix { };
 
@@ -1076,7 +1096,11 @@ let
 
         linksem = callPackage ../development/ocaml-modules/linksem { };
 
-        linol = callPackage ../development/ocaml-modules/linol { };
+        linol = callPackage ../development/ocaml-modules/linol {
+          ppx_yojson_conv_lib = ppx_yojson_conv_lib.override {
+            yojson = yojson.override { version = "2.2.2"; };
+          };
+        };
 
         linol-eio = callPackage ../development/ocaml-modules/linol/eio.nix { };
 
@@ -1310,7 +1334,11 @@ let
 
         mlbdd = callPackage ../development/ocaml-modules/mlbdd { };
 
-        mldoc = callPackage ../development/ocaml-modules/mldoc { };
+        mldoc = callPackage ../development/ocaml-modules/mldoc {
+          ppx_deriving_yojson = ppx_deriving_yojson.override {
+            yojson = yojson.override { version = "2.2.2"; };
+          };
+        };
 
         mlgmpidl = callPackage ../development/ocaml-modules/mlgmpidl { };
 
@@ -1326,7 +1354,11 @@ let
           inherit (pkgs.llvmPackages_19) clang libclang libllvm;
         };
 
-        morbig = callPackage ../development/ocaml-modules/morbig { };
+        morbig = callPackage ../development/ocaml-modules/morbig {
+          ppx_deriving_yojson = ppx_deriving_yojson.override {
+            yojson = yojson.override { version = "2.2.2"; };
+          };
+        };
 
         mparser = callPackage ../development/ocaml-modules/mparser { };
 
@@ -2164,7 +2196,9 @@ let
 
         wasm = callPackage ../development/ocaml-modules/wasm { };
 
-        wasm_of_ocaml-compiler = callPackage ../development/tools/ocaml/js_of_ocaml/compiler-wasm.nix { };
+        wasm_of_ocaml-compiler = callPackage ../development/tools/ocaml/js_of_ocaml/compiler-wasm.nix {
+          yojson = yojson.override { version = "2.2.2"; };
+        };
 
         wayland = callPackage ../development/ocaml-modules/wayland { };
 

@@ -7,7 +7,6 @@
   lwt,
   cohttp-lwt,
   github-data,
-  yojson,
   stringext,
 }:
 
@@ -22,15 +21,12 @@ buildDunePackage rec {
     sha256 = "sha256-/IRoaGh4nYcdv4ir3LOS1d9UHLfWJ6DdPyFoFVCS+p4=";
   };
 
-  duneVersion = "3";
-
   propagatedBuildInputs = [
     uri
     cohttp
     lwt
     cohttp-lwt
     github-data
-    yojson
     stringext
   ];
 
