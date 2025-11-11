@@ -4,6 +4,7 @@
   fetchFromGitLab,
   fetchpatch,
   ocamlPackages,
+  dune_3,
 }:
 
 stdenv.mkDerivation {
