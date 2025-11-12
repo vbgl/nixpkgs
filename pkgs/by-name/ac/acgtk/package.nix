@@ -2,36 +2,22 @@
   lib,
   stdenv,
   fetchFromGitLab,
-  fetchpatch,
   ocamlPackages,
+  dune_3,
 }:
 
 stdenv.mkDerivation {
 
   pname = "acgtk";
-  version = "2.1.0";
+  version = "2.2.0";
 
   src = fetchFromGitLab {
     domain = "gitlab.inria.fr";
     owner = "acg";
     repo = "dev/acgtk";
-    tag = "release-2.1.0";
-    hash = "sha256-XuPcubt1lvnQio+km6MhmDu41NXNVXKKpzGd/Y1XzLo=";
+    tag = "release-2.2.0";
+    hash = "sha256-cDP41a3CHh+KW2PAZ3WTRA2HTXKhb8mMCTNddv6M8Bg=";
   };
-
-  # Compatibility with fmt 0.10.0
-  patches = [
-    (fetchpatch {
-      url = "https://gitlab.inria.fr/ACG/dev/ACGtk/-/commit/613454b376d10974f539ab398a269be061c5bc9c.patch";
-      hash = "sha256-l/V8oEgntnFtrhpTQSk7PkpaX+dBq4izG/tloCQRbDY=";
-    })
-  ];
-
-  # Compatibility with logs 0.8.0
-  postPatch = ''
-    substituteInPlace src/utils/dune \
-      --replace-warn 'logs mtime' 'logs logs.fmt mtime'
-  '';
 
   strictDeps = true;
 
@@ -40,13 +26,17 @@ stdenv.mkDerivation {
     ocaml
     findlib
     dune_3
+    js_of_ocaml
   ];
 
   buildInputs = with ocamlPackages; [
     ansiterminal
-    cairo2
     cmdliner
+    dune-site
     fmt
+    js_of_ocaml
+    js_of_ocaml-ppx
+    js_of_ocaml-tyxml
     logs
     menhirLib
     mtime
