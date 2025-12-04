@@ -1390,8 +1390,6 @@ let
 
         ocaml-lua = callPackage ../development/ocaml-modules/ocaml-lua { };
 
-        ocaml_lwt = lwt;
-
         ocaml-migrate-parsetree = ocaml-migrate-parsetree-1-8;
 
         ocaml-migrate-parsetree-1-8 =
@@ -2249,6 +2247,7 @@ let
         dune_3 = pkgs.dune_3; # Added 2025-12-08
         gd4o = throw "ocamlPackages.gd4o is not maintained, use ocamlPackages.gd instead";
         ocaml-vdom = throw "2023-10-09: ocamlPackages.ocaml-vdom was renamed to ocamlPackages.vdom";
+        ocaml_lwt = throw "ocamlPackages.ocaml_lwt has been renamed to ocamlPackages.lwt"; # Added 2025-12-05
       }
     )).overrideScope
       liftJaneStreet;
