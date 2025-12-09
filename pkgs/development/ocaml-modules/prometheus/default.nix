@@ -4,7 +4,6 @@
   buildDunePackage,
   astring,
   asetmap,
-  fmt,
   re,
   lwt,
   alcotest,
@@ -12,21 +11,21 @@
 
 buildDunePackage rec {
   pname = "prometheus";
-  version = "1.2";
+  version = "1.3";
 
   src = fetchurl {
     url = "https://github.com/mirage/prometheus/releases/download/v${version}/prometheus-${version}.tbz";
-    sha256 = "sha256-g2Q6ApprbecdFANO7i6U/v8dCHVcSkHVg9wVMKtVW8s=";
+    hash = "sha256-4C0UzwaCgqtk5SGIY89rg0dxdrKm63lhdcOaQAa20L8=";
   };
-
-  duneVersion = "3";
 
   propagatedBuildInputs = [
     astring
     asetmap
-    fmt
     re
     lwt
+  ];
+
+  checkInputs = [
     alcotest
   ];
 
