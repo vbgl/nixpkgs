@@ -1761,6 +1761,8 @@ let
 
         prometheus = callPackage ../development/ocaml-modules/prometheus { };
 
+        prometheus-app = callPackage ../development/ocaml-modules/prometheus/app.nix { };
+
         progress = callPackage ../development/ocaml-modules/progress { };
 
         promise_jsoo = callPackage ../development/ocaml-modules/promise_jsoo { };

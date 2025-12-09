@@ -6,7 +6,6 @@
   asetmap,
   re,
   lwt,
-  alcotest,
 }:
 
 buildDunePackage rec {
@@ -25,9 +24,9 @@ buildDunePackage rec {
     lwt
   ];
 
-  checkInputs = [
-    alcotest
-  ];
+  # The tests depend on prometheus-app, which in turn depends on this package
+  # To avoid an infinite recursion, tests are run in the prometheus-app package
+  doCheck = false;
 
   meta = {
     description = "Client library for Prometheus monitoring";
