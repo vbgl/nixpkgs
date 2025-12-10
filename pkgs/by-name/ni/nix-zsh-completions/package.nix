@@ -16,10 +16,18 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   strictDeps = true;
+
+  dontConfigure = true;
+  dontBuild = true;
+
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/share/zsh/{site-functions,plugins/nix}
     cp _* $out/share/zsh/site-functions
     cp *.zsh $out/share/zsh/plugins/nix
+
+    runHook postInstall
   '';
 
   meta = {
