@@ -2303,9 +2303,9 @@ rec {
 
   ocamlPackages_5_4 = mkOcamlPackages (callPackage ../development/compilers/ocaml/5.4.nix { });
 
-  ocamlPackages_latest = ocamlPackages_5_3;
+  ocamlPackages_latest = ocamlPackages_5_4;
 
-  ocamlPackages = ocamlPackages_5_3;
+  ocamlPackages = ocamlPackages_5_4;
 
   # We still have packages that rely on unsafe-string, which is deprecated in OCaml 4.06.0.
   # Below are aliases for porting them to the latest versions of the OCaml 4 series.
