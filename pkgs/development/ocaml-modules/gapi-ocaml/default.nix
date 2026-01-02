@@ -1,6 +1,7 @@
 {
   lib,
   fetchFromGitHub,
+  fetchpatch,
   buildDunePackage,
   camlp-streams,
   cppo,
@@ -14,14 +15,17 @@ buildDunePackage rec {
   pname = "gapi-ocaml";
   version = "0.4.7";
 
-  minimalOCamlVersion = "4.08";
-
   src = fetchFromGitHub {
     owner = "astrada";
-    repo = pname;
-    rev = "v${version}";
+    repo = "gapi-ocaml";
+    tag = "v${version}";
     hash = "sha256-uQJfrgF0oafURlamHslt9hX9MP4vFeVqDhuX7T/kjiY=";
   };
+
+  patches = lib.optional (lib.versionAtLeast cryptokit.version "1.21") (fetchpatch {
+    url = "https://github.com/astrada/gapi-ocaml/commit/04f2c1ac5bba033fbe3eea585d2aaac904c5c7ae.patch";
+    hash = "sha256-HbcFPKIplssDwPKEytj93XqMN68PsDWZDBgdCjGwELE=";
+  });
 
   nativeBuildInputs = [ cppo ];
 
