@@ -1,7 +1,6 @@
 {
   lib,
   fetchFromGitHub,
-  fetchpatch,
   buildDunePackage,
   camlp-streams,
   cppo,
@@ -11,21 +10,21 @@
   ounit2,
 }:
 
-buildDunePackage rec {
+buildDunePackage (finalAttrs: {
   pname = "gapi-ocaml";
-  version = "0.4.7";
+  version = if lib.versionAtLeast cryptokit.version "1.21" then "0.4.8" else "0.4.7";
 
   src = fetchFromGitHub {
     owner = "astrada";
     repo = "gapi-ocaml";
-    tag = "v${version}";
-    hash = "sha256-uQJfrgF0oafURlamHslt9hX9MP4vFeVqDhuX7T/kjiY=";
+    tag = "v${finalAttrs.version}";
+    hash =
+      {
+        "0.4.7" = "sha256-uQJfrgF0oafURlamHslt9hX9MP4vFeVqDhuX7T/kjiY=";
+        "0.4.8" = "sha256-RvHcse3ech8BwnR0Kd1oE5ycAdSBpeQ0IGAp9egFbBY=";
+      }
+      ."${finalAttrs.version}";
   };
-
-  patches = lib.optional (lib.versionAtLeast cryptokit.version "1.21") (fetchpatch {
-    url = "https://github.com/astrada/gapi-ocaml/commit/04f2c1ac5bba033fbe3eea585d2aaac904c5c7ae.patch";
-    hash = "sha256-HbcFPKIplssDwPKEytj93XqMN68PsDWZDBgdCjGwELE=";
-  });
 
   nativeBuildInputs = [ cppo ];
 
@@ -45,4 +44,4 @@ buildDunePackage rec {
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ bennofs ];
   };
-}
+})
