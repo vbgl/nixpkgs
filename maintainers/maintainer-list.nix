@@ -18690,6 +18690,11 @@
     githubId = 50854675;
     name = "Nelson Jeppesen";
   };
+  nemeott = {
+    github = "nemeott";
+    githubId = 123220311;
+    name = "Nathan Emeott";
+  };
   nemin = {
     name = "Nemin";
     github = "Nemin32";
