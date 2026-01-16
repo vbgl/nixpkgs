@@ -24,6 +24,8 @@ buildPythonPackage {
     hash = "sha256-eVirStLOPTbf860jfkNMWtGf+r0VygLZRjRDjBMCVKg=";
   };
 
+  patches = [ ./remove-getheader-usage.patch ];
+
   build-system = [ setuptools ];
 
   dependencies = [
