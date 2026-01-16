@@ -23,6 +23,8 @@ stdenv.mkDerivation {
     substituteInPlace configure --replace Linux Debian
   '';
 
+  NIX_CFLAGS_COMPILE = "-std=gnu11";
+
   strictDeps = true;
 
   nativeBuildInputs = [
