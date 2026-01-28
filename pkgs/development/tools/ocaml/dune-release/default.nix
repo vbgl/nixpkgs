@@ -6,7 +6,7 @@
   curly,
   fmt,
   bos,
-  cmdliner,
+  cmdliner_1,
   re,
   rresult,
   logs,
@@ -52,16 +52,17 @@ buildDunePackage rec {
   nativeBuildInputs = [ makeWrapper ] ++ runtimeInputs;
   buildInputs = [
     curly
-    fmt
-    cmdliner
+    cmdliner_1
     re
     opam-format
     opam-state
     opam-core
     rresult
-    logs
     odoc
-    bos
+    (bos.override {
+      fmt = fmt.override { cmdliner = cmdliner_1; };
+      logs = logs.override { cmdliner = cmdliner_1; };
+    })
     yojson
     astring
     fpath
@@ -71,7 +72,8 @@ buildDunePackage rec {
     gitMinimal
   ];
   checkInputs = [ alcotest ] ++ runtimeInputs;
-  doCheck = true;
+  # Alcotest depends on cmdliner ≥ 2.0
+  doCheck = false;
 
   postPatch = ''
     # remove check for curl in PATH, since curly is patched
