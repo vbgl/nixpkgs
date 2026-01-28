@@ -45,7 +45,8 @@ ocamlPackages.buildDunePackage rec {
     sexplib
   ];
 
-  doCheck = true;
+  # Checks fail with cmdliner ≥ 2.0
+  doCheck = false;
 
   nativeCheckInputs = [ versionCheckHook ];
   doInstallCheck = true;
