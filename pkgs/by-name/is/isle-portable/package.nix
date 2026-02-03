@@ -26,6 +26,7 @@
   alsa-lib,
   sdl3,
   iniparser,
+  libweaver,
 
   # Options
   imguiDebug ? false,
@@ -35,13 +36,13 @@
 stdenv.mkDerivation (finalAttrs: {
   strictDeps = true;
   pname = "isle-portable";
-  version = "0-unstable-2025-11-15";
+  version = "0-unstable-2026-01-31";
 
   src = fetchFromGitHub {
     owner = "isledecomp";
     repo = "isle-portable";
-    rev = "d182a8057c5c0827c33639367b7e00e9ab389e78";
-    hash = "sha256-V3jmUUzTkLKUwa/mCtp+UbJNAmHlrrDIKGimKOJOJss=";
+    rev = "03cb40190a1aedea23b857942d14359c86ad3857";
+    hash = "sha256-YGj+2FzotNmHrYBHmlMt6xuSXgXWa6j3rmukjUyGegA=";
     fetchSubmodules = true;
   };
 
@@ -66,6 +67,7 @@ stdenv.mkDerivation (finalAttrs: {
     qt6.qtbase
     sdl3
     iniparser
+    libweaver
   ]
   ++ lib.optionals stdenv.hostPlatform.isLinux [
     libx11
