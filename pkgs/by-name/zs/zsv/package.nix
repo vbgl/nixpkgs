@@ -2,7 +2,6 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  perl,
   jq,
 }:
 
@@ -16,8 +15,6 @@ stdenv.mkDerivation (finalAttrs: {
     rev = "v${finalAttrs.version}";
     hash = "sha256-6Gc9RDrQmayTnCoFHYN8B3gdqR3CPyyLWtO31WpnJ3o=";
   };
-
-  nativeBuildInputs = [ perl ];
 
   buildInputs = [ jq ];
 
