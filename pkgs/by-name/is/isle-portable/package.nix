@@ -2,10 +2,12 @@
   lib,
   fetchFromGitHub,
   stdenv,
+  callPackage,
   unstableGitUpdater,
 
   # Native Build Inputs
   cmake,
+  ninja,
   python3,
   pkg-config,
 
@@ -58,6 +60,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     cmake
+    ninja
     qt6.wrapQtAppsHook
     python3
     pkg-config
@@ -91,7 +94,12 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.cmakeFeature "ISLE_EMSCRIPTEN_HOST" emscriptenHost)
   ];
 
-  passthru.updateScript = unstableGitUpdater { hardcodeZeroVersion = true; };
+  passthru = {
+    updateScript = unstableGitUpdater { hardcodeZeroVersion = true; };
+    wrapped = callPackage ./wrapper.nix {
+      isle-portable-unwrapped = finalAttrs.finalPackage;
+    };
+  };
 
   meta = {
     description = "Portable decompilation of Lego Island";
