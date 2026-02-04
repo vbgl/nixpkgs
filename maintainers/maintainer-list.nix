@@ -3614,6 +3614,12 @@
     githubId = 535135;
     name = "Brennon Loveless";
   };
+  Blu3 = {
+    name = "Blu3";
+    email = "Blu3SoulsIT@gmail.com";
+    github = "Blu3SoulsIT";
+    githubId = 96670566;
+  };
   blusk = {
     email = "bluskript@gmail.com";
     github = "bluskript";
