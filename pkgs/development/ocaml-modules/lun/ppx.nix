@@ -10,6 +10,8 @@ buildDunePackage {
   pname = "ppx_lun";
   inherit (lun) version src;
 
+  minimalOCamlVersion = "5.4";
+
   propagatedBuildInputs = [
     lun
     ppxlib
