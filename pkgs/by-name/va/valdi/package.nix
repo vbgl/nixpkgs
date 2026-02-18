@@ -15,6 +15,8 @@ buildNpmPackage rec {
     hash = "sha256-B0j4R07M9/nTf0RxnKEfv84B5Xh41cWLz9VgV9O4+VA=";
   };
 
+  passthru.updateScript = ./update.sh;
+
   sourceRoot = "${src.name}/npm_modules/cli";
 
   npmDepsHash = "sha256-LGgyMdhDQ4UwdtENZT/89yiQawn8SxKdth/p7evDAgk=";
