@@ -105,6 +105,7 @@ stdenv.mkDerivation (finalAttrs: {
     license = lib.licenses.gpl3Plus;
     maintainers = with lib.maintainers; [
       chuangzhu
+      Kladki
     ];
     platforms = lib.platforms.linux;
   };
