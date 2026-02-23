@@ -19,13 +19,13 @@
 
 buildDunePackage (finalAttrs: {
   pname = "eliom";
-  version = "11.1.1";
+  version = "12.0.0";
 
   src = fetchFromGitHub {
     owner = "ocsigen";
     repo = "eliom";
-    rev = finalAttrs.version;
-    hash = "sha256-ALuoyO6axNQEeBteBVIFwdoSrbLxxcaSTObAcLPGIvo=";
+    tag = finalAttrs.version;
+    hash = "sha256-CSPWzrm9D+OFSZnQxa/ZCpin8GHveAwBa4B2pBuDUi8=";
   };
 
   nativeBuildInputs = [
@@ -69,7 +69,6 @@ buildDunePackage (finalAttrs: {
     '';
 
     license = lib.licenses.lgpl21;
-    broken = true;
     maintainers = [ lib.maintainers.gal_bolle ];
   };
 })
