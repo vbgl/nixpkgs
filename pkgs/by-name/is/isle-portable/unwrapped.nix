@@ -32,7 +32,6 @@
 
   # Options
   imguiDebug ? false,
-  addrSan ? false,
   emscriptenHost ? "",
 }:
 stdenv.mkDerivation (finalAttrs: {
