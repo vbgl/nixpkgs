@@ -7,17 +7,18 @@
 
 python3Packages.buildPythonApplication (finalAttrs: {
   pname = "scdl";
-  version = "3.0.1";
+  version = "3.0.4";
   pyproject = true;
 
   src = fetchPypi {
     inherit (finalAttrs) pname version;
-    hash = "sha256-cbNXSMH4UpRyG7U5Csu3ITtS7vp3xM/yVdyYReLcHIU=";
+    hash = "sha256-r7cvsoKTWE0W/pbjmbaGqra9+qb1MDxf2B5C/rdrCdU=";
   };
 
   build-system = [ python3Packages.setuptools ];
 
   dependencies = with python3Packages; [
+    curl-cffi
     docopt-ng
     mutagen
     soundcloud-v2
