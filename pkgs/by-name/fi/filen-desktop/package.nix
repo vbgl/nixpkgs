@@ -76,9 +76,8 @@ buildNpmPackage {
 
   # Set up icon assets in path required by desktopItem
   preInstall = ''
-    mkdir -p $out/share/pixmaps
-    cp $src/assets/icons/app/${iconPrefix}.${iconSuffix} $out/share/pixmaps/${packageName}.${iconSuffix}
-    cp $src/assets/icons/app/${iconPrefix}Notification.${iconSuffix} $out/share/pixmaps/${packageName}-notification.${iconSuffix}
+    install -D $src/assets/icons/app/${iconPrefix}.${iconSuffix} $out/share/icons/hicolor/128x128/apps/${packageName}.${iconSuffix}
+    install -D $src/assets/icons/app/${iconPrefix}Notification.${iconSuffix} $out/share/icons/hicolor/128x128/apps/${packageName}-notification.${iconSuffix}
   '';
 
   # Create binary wrapper and desktopItem
