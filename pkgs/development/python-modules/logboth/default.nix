@@ -5,7 +5,7 @@
   setuptools,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "logboth";
   version = "0.2.0";
   pyproject = true;
@@ -13,7 +13,7 @@ buildPythonPackage rec {
   src = fetchFromGitLab {
     owner = "zehkira";
     repo = "logboth";
-    tag = "v${version}";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-R4FrZK8yxCZ5BFBFp/Fj/WyWa6+rIM6GHl3HZGgp5TI=";
   };
 
@@ -35,4 +35,4 @@ buildPythonPackage rec {
     license = lib.licenses.bsd0;
     maintainers = with lib.maintainers; [ aleksana ];
   };
-}
+})
