@@ -36,7 +36,7 @@
   writableTmpDirAsHomeHook,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "librosa";
   version = "0.11.0";
   pyproject = true;
@@ -44,7 +44,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "librosa";
     repo = "librosa";
-    tag = version;
+    tag = finalAttrs.version;
     fetchSubmodules = true; # for test data
     hash = "sha256-T58J/Gi3tHzelr4enbYJi1KmO46QxE5Zlhkc0+EgvRg=";
   };
@@ -89,7 +89,7 @@ buildPythonPackage rec {
     samplerate
     writableTmpDirAsHomeHook
   ]
-  ++ optional-dependencies.matplotlib;
+  ++ finalAttrs.passthru.optional-dependencies.matplotlib;
 
   disabledTests = [
     # requires network access
@@ -132,8 +132,8 @@ buildPythonPackage rec {
   meta = {
     description = "Python library for audio and music analysis";
     homepage = "https://github.com/librosa/librosa";
-    changelog = "https://github.com/librosa/librosa/releases/tag/${version}";
+    changelog = "https://github.com/librosa/librosa/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.isc;
     maintainers = with lib.maintainers; [ carlthome ];
   };
-}
+})
