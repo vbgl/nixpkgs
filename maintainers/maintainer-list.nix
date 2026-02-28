@@ -1568,12 +1568,6 @@
     githubId = 1358320;
     name = "Arie Middelkoop";
   };
-  amiloradovsky = {
-    email = "miloradovsky@gmail.com";
-    github = "amiloradovsky";
-    githubId = 20530052;
-    name = "Andrew Miloradovsky";
-  };
   aminechikhaoui = {
     email = "amine.chikhaoui91@gmail.com";
     github = "AmineChikhaoui";
