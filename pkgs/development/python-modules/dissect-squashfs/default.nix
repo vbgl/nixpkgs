@@ -13,14 +13,14 @@
 
 buildPythonPackage rec {
   pname = "dissect-squashfs";
-  version = "1.11";
+  version = "1.12";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "fox-it";
     repo = "dissect.squashfs";
     tag = version;
-    hash = "sha256-glmrsbNkhgYBhcL+qgEnBfJnGL4ViHH1L5HN9rGlUNM=";
+    hash = "sha256-p+8MKpjAq09jTrlTaA8zSf1wMYzAHtydm5c8RICCAOQ=";
   };
 
   build-system = [
