@@ -11,7 +11,7 @@
   zstandard,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "dissect-squashfs";
   version = "1.12";
   pyproject = true;
@@ -19,7 +19,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "fox-it";
     repo = "dissect.squashfs";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-p+8MKpjAq09jTrlTaA8zSf1wMYzAHtydm5c8RICCAOQ=";
   };
 
@@ -46,8 +46,8 @@ buildPythonPackage rec {
   meta = {
     description = "Dissect module implementing a parser for the SquashFS file system";
     homepage = "https://github.com/fox-it/dissect.squashfs";
-    changelog = "https://github.com/fox-it/dissect.squashfs/releases/tag/${src.tag}";
+    changelog = "https://github.com/fox-it/dissect.squashfs/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.agpl3Only;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
