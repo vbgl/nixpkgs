@@ -873,6 +873,7 @@
   ./services/misc/headphones.nix
   ./services/misc/heisenbridge.nix
   ./services/misc/homepage-dashboard.nix
+  ./services/misc/hyprwhspr-rs.nix
   ./services/misc/ihaskell.nix
   ./services/misc/iio-niri.nix
   ./services/misc/input-remapper.nix
