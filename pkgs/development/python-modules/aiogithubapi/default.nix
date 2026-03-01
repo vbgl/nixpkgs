@@ -12,7 +12,7 @@
   writableTmpDirAsHomeHook,
 }:
 
-buildPythonPackage rec {
+buildPythonPackage (finalAttrs: {
   pname = "aiogithubapi";
   version = "26.0.0";
   pyproject = true;
@@ -20,7 +20,7 @@ buildPythonPackage rec {
   src = fetchFromGitHub {
     owner = "ludeeus";
     repo = "aiogithubapi";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-LQFOmg59kusqYtaLQaFePh+4aM25MaXVNkYy3PIeZ5A=";
   };
 
@@ -30,9 +30,8 @@ buildPythonPackage rec {
     # Upstream is releasing with the help of a CI to PyPI, GitHub releases
     # are not in their focus
     substituteInPlace pyproject.toml \
-      --replace-fail 'version = "0"' 'version = "${version}"'
+      --replace-fail 'version = "0"' 'version = "${finalAttrs.version}"'
   '';
-
 
   build-system = [ hatchling ];
 
@@ -63,8 +62,8 @@ buildPythonPackage rec {
   meta = {
     description = "Python client for the GitHub API";
     homepage = "https://github.com/ludeeus/aiogithubapi";
-    changelog = "https://github.com/ludeeus/aiogithubapi/releases/tag/${version}";
+    changelog = "https://github.com/ludeeus/aiogithubapi/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ fab ];
   };
-}
+})
