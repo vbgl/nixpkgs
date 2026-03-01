@@ -1011,15 +1011,6 @@ let
         sha512 = "yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==";
       };
     };
-    "chokidar-4.0.3" = {
-      name = "chokidar";
-      packageName = "chokidar";
-      version = "4.0.3";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/chokidar/-/chokidar-4.0.3.tgz";
-        sha512 = "Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==";
-      };
-    };
     "chownr-2.0.0" = {
       name = "chownr";
       packageName = "chownr";
@@ -1846,15 +1837,6 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/immer/-/immer-9.0.21.tgz";
         sha512 = "bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==";
-      };
-    };
-    "immutable-5.0.3" = {
-      name = "immutable";
-      packageName = "immutable";
-      version = "5.0.3";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/immutable/-/immutable-5.0.3.tgz";
-        sha512 = "P8IdPQHq3lA1xVeBRi5VPqUm5HDgKnx0Ru51wZz5mjxHr5n3RWhjIpOFU7ybkUxfB+5IToy+OLaHYDBIWsv+uw==";
       };
     };
     "inflight-1.0.6" = {
@@ -3126,15 +3108,6 @@ let
         sha512 = "v05I2k7xN8zXvPD9N+z/uhXPaj0sUFCe2rcWZIpBsqxfP7xXFQ0tipAd/wjj1YxWyWtUS5IDJpOG82JKt2EAVA==";
       };
     };
-    "readdirp-4.1.2" = {
-      name = "readdirp";
-      packageName = "readdirp";
-      version = "4.1.2";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/readdirp/-/readdirp-4.1.2.tgz";
-        sha512 = "GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==";
-      };
-    };
     "rechoir-0.7.1" = {
       name = "rechoir";
       packageName = "rechoir";
@@ -3466,15 +3439,6 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/slide/-/slide-1.1.6.tgz";
         sha512 = "NwrtjCg+lZoqhFU8fOwl4ay2ei8PaqCBOUV3/ektPY9trO1yQ1oXEfmHAhKArUVUr/hOHvy5f6AdP17dCM0zMw==";
-      };
-    };
-    "source-map-js-1.2.1" = {
-      name = "source-map-js";
-      packageName = "source-map-js";
-      version = "1.2.1";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz";
-        sha512 = "UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==";
       };
     };
     "spdx-correct-3.2.0" = {
@@ -4242,30 +4206,6 @@ in
     meta = {
       description = "Generate Nix expressions to build NPM packages";
       homepage = "https://github.com/svanderburg/node2nix";
-      license = "MIT";
-    };
-    production = true;
-    bypassCache = true;
-    reconstructLock = true;
-  };
-  sass = nodeEnv.buildNodePackage {
-    name = "sass";
-    packageName = "sass";
-    version = "1.85.1";
-    src = fetchurl {
-      url = "https://registry.npmjs.org/sass/-/sass-1.85.1.tgz";
-      sha512 = "Uk8WpxM5v+0cMR0XjX9KfRIacmSG86RH4DCCZjLU2rFh5tyutt9siAXJ7G+YfxQ99Q6wrRMbMlVl6KqUms71ag==";
-    };
-    dependencies = [
-      sources."chokidar-4.0.3"
-      sources."immutable-5.0.3"
-      sources."readdirp-4.1.2"
-      sources."source-map-js-1.2.1"
-    ];
-    buildInputs = globalBuildInputs;
-    meta = {
-      description = "Pure JavaScript implementation of Sass";
-      homepage = "https://github.com/sass/dart-sass";
       license = "MIT";
     };
     production = true;
