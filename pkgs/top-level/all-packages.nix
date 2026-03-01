@@ -3548,6 +3548,9 @@ with pkgs;
     vkbasalt32 = pkgsi686Linux.vkbasalt;
   };
 
+  voxtype-vulkan = callPackage ../by-name/vo/voxtype/package.nix { vulkanSupport = true; };
+  voxtype-onnx = callPackage ../by-name/vo/voxtype/package.nix { onnxSupport = true; };
+
   vpn-slice = python3Packages.callPackage ../tools/networking/vpn-slice { };
 
   vpWithSixel = vp.override {
