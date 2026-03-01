@@ -20,6 +20,25 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-OkfWdim0JDKiBx5spYpkMyFrLQP3AMWBVDpzmFwqNFM=";
   };
 
+  # Fix boost 1.89 compatibility
+  postPatch = ''
+    substituteInPlace CMakeLists.txt \
+      --replace-fail \
+        "find_package(Boost REQUIRED COMPONENTS thread system program_options date_time)" \
+        "find_package(Boost REQUIRED COMPONENTS thread program_options date_time)" \
+      --replace-fail \
+        "find_package(Boost REQUIRED COMPONENTS thread system program_options date_time chrono)" \
+        "find_package(Boost REQUIRED COMPONENTS thread program_options date_time chrono)"
+
+    substituteInPlace libpointmatcherConfig.cmake.in \
+      --replace-fail \
+        "find_package(Boost COMPONENTS thread system program_options date_time REQUIRED)" \
+        "find_package(Boost COMPONENTS thread program_options date_time REQUIRED)" \
+      --replace-fail \
+        "find_package(Boost COMPONENTS thread system program_options date_time chrono REQUIRED)" \
+        "find_package(Boost COMPONENTS thread program_options date_time chrono REQUIRED)"
+  '';
+
   nativeBuildInputs = [ cmake ];
   buildInputs = [
     eigen
