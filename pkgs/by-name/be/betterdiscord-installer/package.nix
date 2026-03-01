@@ -28,7 +28,7 @@ appimageTools.wrapType2 {
     description = "Installer for BetterDiscord";
     homepage = "https://betterdiscord.app";
     license = lib.licenses.mit;
-    maintainers = [ ];
+    maintainers = with lib.maintainers; [ chillcicada ];
     platforms = [ "x86_64-linux" ];
     mainProgram = "betterdiscord-installer";
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
