@@ -3820,8 +3820,6 @@ with pkgs;
     llvmPackages = crystal.llvmPackages;
   };
 
-  devpi-server = python3Packages.callPackage ../development/tools/devpi-server { };
-
   dprint-plugins = recurseIntoAttrs (callPackage ../by-name/dp/dprint/plugins { });
 
   reaction-plugins = reaction.passthru.plugins;
