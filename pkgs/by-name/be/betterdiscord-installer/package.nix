@@ -5,11 +5,11 @@
 }:
 let
   pname = "betterdiscord-installer";
-  version = "1.0.0-beta";
+  version = "1.3.0";
 
   src = fetchurl {
     url = "https://github.com/BetterDiscord/Installer/releases/download/v${version}/Betterdiscord-Linux.AppImage";
-    sha256 = "103acb11qmvjmf6g9lgsfm5jyahfwfdqw0x9w6lmv1hzwbs26dsr";
+    hash = "sha256-In5J6TWoJsFODDwMXd1lMg3341IZJD2OJebVtgISxP0=";
   };
 
   appimageContents = appimageTools.extract { inherit pname version src; };
@@ -18,9 +18,9 @@ appimageTools.wrapType2 {
   inherit pname version src;
 
   extraInstallCommands = ''
-    install -m 444 -D ${appimageContents}/betterdiscord.desktop -t $out/share/applications
-    substituteInPlace $out/share/applications/betterdiscord.desktop \
-      --replace 'Exec=AppRun' 'Exec=${pname}'
+    install -m 444 -D ${appimageContents}/betterdiscord-installer.desktop -t $out/share/applications
+    substituteInPlace $out/share/applications/betterdiscord-installer.desktop \
+      --replace-fail 'Exec=AppRun' 'Exec=betterdiscord-installer'
     cp -r ${appimageContents}/usr/share/icons $out/share
   '';
 
@@ -31,5 +31,6 @@ appimageTools.wrapType2 {
     maintainers = [ ];
     platforms = [ "x86_64-linux" ];
     mainProgram = "betterdiscord-installer";
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
   };
 }
