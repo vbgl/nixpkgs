@@ -23,13 +23,13 @@
 
 buildPythonPackage rec {
   pname = "ring-doorbell";
-  version = "0.9.13";
+  version = "0.9.14";
   pyproject = true;
 
   src = fetchPypi {
     pname = "ring_doorbell";
     inherit version;
-    hash = "sha256-M8lHODHdWXLvrDbQMeEgGaQMYCXicHTQta+XjJxSQlM=";
+    hash = "sha256-M99nwMuo0OziuJpNzuZgK69HtE+/wbOgheij1UwBaRc=";
   };
 
   patches = [
