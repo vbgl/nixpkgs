@@ -2,6 +2,7 @@
   appimageTools,
   lib,
   fetchurl,
+  nix-update-script,
 }:
 let
   pname = "betterdiscord-installer";
@@ -23,6 +24,8 @@ appimageTools.wrapType2 {
       --replace-fail 'Exec=AppRun' 'Exec=betterdiscord-installer'
     cp -r ${appimageContents}/usr/share/icons $out/share
   '';
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Installer for BetterDiscord";
