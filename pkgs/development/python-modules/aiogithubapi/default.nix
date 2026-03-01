@@ -2,11 +2,10 @@
   lib,
   aiohttp,
   aresponses,
-  async-timeout,
   backoff,
   buildPythonPackage,
   fetchFromGitHub,
-  poetry-core,
+  hatchling,
   pytest-asyncio,
   pytestCheckHook,
   sigstore,
@@ -15,14 +14,14 @@
 
 buildPythonPackage rec {
   pname = "aiogithubapi";
-  version = "25.5.0";
+  version = "26.0.0";
   pyproject = true;
 
   src = fetchFromGitHub {
     owner = "ludeeus";
     repo = "aiogithubapi";
     tag = version;
-    hash = "sha256-zl9QpFpkvSTs0BUDMBmwTeLY1YvNRSqbkIZ5LDUP3zw=";
+    hash = "sha256-LQFOmg59kusqYtaLQaFePh+4aM25MaXVNkYy3PIeZ5A=";
   };
 
   __darwinAllowLocalNetworking = true;
@@ -34,13 +33,11 @@ buildPythonPackage rec {
       --replace-fail 'version = "0"' 'version = "${version}"'
   '';
 
-  pythonRelaxDeps = [ "async-timeout" ];
 
-  build-system = [ poetry-core ];
+  build-system = [ hatchling ];
 
   dependencies = [
     aiohttp
-    async-timeout
     backoff
   ];
 
