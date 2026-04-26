@@ -3,6 +3,7 @@
   stdenv,
   buildDunePackage,
   ocaml,
+  fetchpatch,
   fetchFromGitHub,
   menhir,
   darwin,
@@ -21,6 +22,7 @@
   ocaml_intrinsics ? null,
   prelude,
   ppx_enumerate,
+  rresult,
   scfg,
   yojson,
   z3,
@@ -39,6 +41,13 @@ buildDunePackage (finalAttrs: {
     tag = "v${finalAttrs.version}";
     hash = "sha256-dWZrN0hTxxqGC2queit91GDuw/x5fyRPwHbmKxkvc/w=";
   };
+
+  patches = [
+    (fetchpatch {
+      url = "https://github.com/formalsec/smtml/commit/c3d55a4c93f322e3d7834ea441fca913a093ef2a.patch";
+      hash = "sha256-WPwU8x6aSc/IF0zRr6DWIMBuZbWN6yeJmSzK6QYfQXU=";
+    })
+  ];
 
   minimalOCamlVersion = "4.14";
 
@@ -67,6 +76,7 @@ buildDunePackage (finalAttrs: {
     ocaml_intrinsics
     ppx_enumerate
     prelude
+    rresult
     scfg
     yojson
     z3
