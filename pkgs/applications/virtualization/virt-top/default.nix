@@ -38,7 +38,10 @@ stdenv.mkDerivation rec {
     [
       ocamlPackages.ocaml
       calendar
-      curses
+      (curses.overrideAttrs (_: {
+        version = "1.0.11";
+        __intentionallyOverridingVersion = true;
+      }))
       gettext-stub
       ocaml_libvirt
     ]
