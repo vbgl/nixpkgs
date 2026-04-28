@@ -16,6 +16,7 @@
 buildDunePackage {
   pname = "sendmail";
   inherit (colombe) version src;
+  minimalOCamlVersion = "5.2";
   propagatedBuildInputs = [
     base64
     colombe
