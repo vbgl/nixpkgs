@@ -3,7 +3,7 @@
   stdenv,
   fetchurl,
   buildPackages,
-  version ? "3.23.1",
+  version ? "3.24.0_alpha0",
 }:
 let
   # needed for pkgsStatic
@@ -17,10 +17,14 @@ stdenv.mkDerivation {
     url =
       let
         sfx = lib.optionalString (lib.versions.major version == "2") "site-";
+        # Pre-release tarballs are named with a "." separator (dune-3.24.0.alpha0.tbz)
+        # while the git tag uses "_" (3.24.0_alpha0).
+        filenameVersion = builtins.replaceStrings [ "_" ] [ "." ] version;
       in
-      "https://github.com/ocaml/dune/releases/download/${version}/dune-${sfx}${version}.tbz";
+      "https://github.com/ocaml/dune/releases/download/${version}/dune-${sfx}${filenameVersion}.tbz";
     hash =
       {
+        "3.24.0_alpha0" = "sha256-hH6Rhac4ehY+OahA8wC2A53CxXiHT72KH00LYUA3mFw=";
         "3.23.1" = "sha256-k7TnFX9rqP62HPxfhgCO/SxZA3unigF9krSr8wYyNI8=";
         "3.22.2" = "sha256-wsz4vGsXr6R8RQKXNXSWMDqnyGgOMpt52Yxo41AToRg=";
         "3.21.1" = "sha256-hPeoLG2ApxJPOEfppInoDPvq+3vtNXOsAShu9W/QjZQ=";
