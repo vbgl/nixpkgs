@@ -29,6 +29,8 @@ buildDunePackage (finalAttrs: {
   pname = "kapla";
   version = "0.4.0";
 
+  minimalOCamlVersion = "5.2";
+
   src = fetchFromCodeberg {
     owner = "eris";
     repo = "kapla";
