@@ -46,6 +46,7 @@ mkCoqDerivation {
 
   releaseRev = v: "v${v}";
 
+  release."3.6".hash = "sha256-0WsbA/P27EarBSDeqpTHn9sAQK6xS5NkjS/2+3o3ATI=";
   release."3.5".hash = "sha256-ur6XGhTUQ1XdcyC6RERYaTwyzL58mWwdihY/yemjfQg=";
   release."3.4".hash = "sha256-AnyiM5B7JJZI5LR0vSi6baVIx9SibYRiho7UBg1uV5w=";
   release."3.3".hash = "sha256-Zn9245fr0OhgaXjWlIO1QwSxrQYetj7qPHwZAXTdqNc=";
@@ -73,6 +74,7 @@ mkCoqDerivation {
     lib.switch
       [ coq.coq-version mathcomp.version ]
       [
+        (case (range "8.19" "9.3") (isGe "2.4") "3.6")
         (case (range "8.16" "9.3") (isGe "2.0") "3.5")
         (case (range "8.12" "8.20") (range "1.12" "1.19") "2.4")
       ]
