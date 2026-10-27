@@ -19,6 +19,8 @@ buildDunePackage (finalAttrs: {
   version = "2026.08.15";
   __structuredAttrs = true;
 
+  minimalOCamlVersion = "4.14";
+
   src = fetchFromGitHub {
     owner = "AeneasVerif";
     repo = "charon";
