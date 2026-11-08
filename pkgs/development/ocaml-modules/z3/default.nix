@@ -41,6 +41,6 @@ stdenv.mkDerivation {
 
   meta = z3.meta // {
     description = "Z3 Theorem Prover (OCaml API)";
-    broken = lib.versionOlder ocaml.version "4.08";
+    broken = lib.versionOlder ocaml.version "4.14";
   };
 }
