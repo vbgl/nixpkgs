@@ -22,12 +22,14 @@
 
 buildDunePackage (finalAttrs: {
   pname = "mdx";
-  version = "2.5.2";
+  version = "2.6.0";
 
   src = fetchurl {
     url = "https://github.com/realworldocaml/mdx/releases/download/${finalAttrs.version}/mdx-${finalAttrs.version}.tbz";
-    hash = "sha256-yEjCxoDGJmLcSgX1WOXGwY7Sqre7ZQjB1JEJ1uqRo88=";
+    hash = "sha256-OAEfnA0LogRP34whxTCsgGIR57cw2qUoJ5iODH5Ddjw=";
   };
+
+  minimalOCamlVersion = "4.11";
 
   env =
     # Fix build with gcc15

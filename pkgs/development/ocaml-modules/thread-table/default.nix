@@ -1,23 +1,23 @@
 {
   lib,
+  ocaml,
   fetchurl,
   buildDunePackage,
   alcotest,
   mdx,
 }:
 
-buildDunePackage rec {
+buildDunePackage (finalAttrs: {
   pname = "thread-table";
   version = "1.0.0";
 
-  minimalOCamlVersion = "4.08";
-
   src = fetchurl {
-    url = "https://github.com/ocaml-multicore/${pname}/releases/download/${version}/${pname}-${version}.tbz";
+    url = "https://github.com/ocaml-multicore/thread-table/releases/download/${finalAttrs.version}/thread-table-${finalAttrs.version}.tbz";
     hash = "sha256-pIzYhGNZfflELEuqaczAYJHKd7px5DjTYJ+64PO4Hd0=";
   };
 
-  doCheck = true;
+  # mdx is not available for OCaml < 4.11
+  doCheck = lib.versionAtLeast ocaml.version "4.11";
 
   checkInputs = [
     alcotest
@@ -29,10 +29,10 @@ buildDunePackage rec {
   ];
 
   meta = {
-    homepage = "https://github.com/ocaml-multicore/ocaml-${pname}";
-    changelog = "https://github.com/ocaml-multicore/ocaml-${pname}/raw/${version}/CHANGES.md";
+    homepage = "https://github.com/ocaml-multicore/ocaml-thread-table";
+    changelog = "https://github.com/ocaml-multicore/ocaml-thread-table/raw/${finalAttrs.version}/CHANGES.md";
     description = "Lock-free thread-safe integer keyed hash table";
     license = lib.licenses.isc;
     maintainers = with lib.maintainers; [ toastal ];
   };
-}
+})

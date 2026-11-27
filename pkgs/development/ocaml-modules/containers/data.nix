@@ -1,4 +1,5 @@
 {
+  lib,
   buildDunePackage,
   containers,
   ocaml,
@@ -14,7 +15,8 @@ buildDunePackage {
 
   inherit (containers) src version;
 
-  doCheck = containers.doCheck && ocaml.meta.branch != "5.0";
+  doCheck =
+    containers.doCheck && ocaml.meta.branch != "5.0" && lib.versionAtLeast ocaml.version "4.11";
 
   buildInputs = [ dune-configurator ];
   nativeCheckInputs = [ mdx.out ];

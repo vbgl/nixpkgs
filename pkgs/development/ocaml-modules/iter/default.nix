@@ -1,6 +1,7 @@
 {
   lib,
   fetchurl,
+  ocaml,
   buildDunePackage,
   mdx,
   ounit2,
@@ -11,14 +12,13 @@ buildDunePackage (finalAttrs: {
   pname = "iter";
   version = "1.9";
 
-  minimalOCamlVersion = "4.08";
-
   src = fetchurl {
     url = "https://github.com/c-cube/iter/releases/download/v${finalAttrs.version}/iter-${finalAttrs.version}.tbz";
     hash = "sha256-26nluxUuDQ2wBUw2sqlHZ0eihKdzjxXxGVo+IDXH6Wg=";
   };
 
-  doCheck = true;
+  # mdx is not available for OCaml < 4.11
+  doCheck = lib.versionAtLeast ocaml.version "4.11";
   nativeCheckInputs = [ mdx.out ];
   checkInputs = [
     ounit2

@@ -31,7 +31,8 @@ buildDunePackage {
     pp_loc
   ];
 
-  doCheck = true;
+  # mdx is not available for OCaml < 4.11
+  doCheck = lib.versionAtLeast ocaml.version "4.11";
   nativeCheckInputs = [ mdx.out ];
   checkInputs = [ mdx ];
 

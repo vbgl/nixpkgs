@@ -1,6 +1,7 @@
 {
   lib,
   fetchFromGitHub,
+  ocaml,
   buildDunePackage,
   iter,
   containers,
@@ -26,7 +27,8 @@ buildDunePackage (finalAttrs: {
     substituteInPlace dune --replace mdx ocaml-mdx
   '';
 
-  doCheck = true;
+  # mdx is not available for OCaml < 4.11
+  doCheck = lib.versionAtLeast ocaml.version "4.11";
   checkInputs = [ containers ];
   nativeCheckInputs = [ mdx.out ];
 
